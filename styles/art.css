@@ -23,6 +23,7 @@
 .quote {
     border: #29395b 10px solid;
     margin: 15px auto;
+    padding: 10% 0;
 }
 
 .img {
@@ -33,11 +34,20 @@
 .quote h4 {
     color: #25a242;
     font-size: 2vw;
+    
 }
 
 .quotes {
-    padding: 3%;
+    padding: 40px 80px;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 40px;
+    row-gap: 40px;
+    background-color: white;
 }
+
+
 
 .gallery {
     padding: 40px 80px;
@@ -52,9 +62,22 @@
 @media only screen and (max-width: 1000px) { 
     .pictext {display: none;}
     .phonetext {display: block;}
+    .quotes {
+        padding: 3%;
+        display: block;
+    }
 }
 
 @media only screen and (min-width: 1000px) { 
     .pictext {display: block;}
     .phonetext {display: none;}
+    .quotes {
+        padding: 40px 80px;
+        margin: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 40px;
+        row-gap: 40px;
+        background-color: white;
+    }
 }

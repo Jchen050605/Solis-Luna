@@ -1,0 +1,34 @@
+.names {
+    margin: 40px;
+    padding: 40px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 40px;
+    row-gap: 40px;
+}
+
+.form {
+    padding: 20%;
+    background-image: linear-gradient(to bottom right, #29395b, #fbedac);
+}
+
+input, textarea {
+    width: 100%;
+    display: block;
+  padding: 12px 20px;
+  margin: 8px auto;
+  box-sizing: border-box;
+}
+
+.contact-div {
+    background-color: white;
+    padding: 20% 10%;
+}
+
+.form-btn {
+    background-color: #0f3900;
+    color:white;
+    width: 75%;
+    margin:auto;
+    height: 50px;
+}

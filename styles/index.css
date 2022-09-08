@@ -1,0 +1,123 @@
+.welcome {
+    margin-top: 15px;
+    padding: 3%;
+}
+
+.welcome h1 {
+    color: #29395b;
+    font-size: 4em;
+}
+
+.welcome h4 {
+    font-size: 1.5em;
+}
+
+.programs {
+    padding: 40px 80px;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 40px;
+    row-gap: 40px;
+    background-color: #29395b;
+}
+
+
+.program {
+    background-color: white;
+}
+
+.program h1 {
+    font-size: 4em;
+}
+
+.works {
+    background-color: #29395b;
+    color: white;
+    padding: 5%;
+}
+
+.works h1 {
+    margin: 0;
+}
+
+.worksbox {
+    width: 80%;
+    border: #ffffff 2px solid;
+    margin-left: 10%;
+    padding: 5% 3%
+}
+
+.learn-more {
+    display: block; 
+    background-color: #29395b;
+    color: white;
+    padding: 2% 4%;
+    font-size: 1.9em;
+    width: 40%;
+    margin: 30px auto;
+    text-align: center;
+    text-decoration: none;
+}
+
+.program h4 {
+    font-size: 1.5em;
+}
+
+.picture {
+    position: relative;
+}
+
+.picture .box {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    background-color: #e2b07d;
+    width: 30%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: #ffffff dashed 7px;
+}
+
+.box h1 {
+    margin: 10px;
+    text-align: center;
+    font-size: 3vw;
+}
+
+.img-small {
+    display: none;
+}
+
+@media only screen and (max-width: 1000px) { 
+    .programs {
+        grid-template-columns: 1fr
+    }
+}
+
+@media only screen and (max-width: 1000px) { 
+    .img-small {display: block;}
+    .img-wide {display: none;}
+    .picture .box {
+        height: 40%;
+        width: 50%;
+    }
+    .box h1 {
+        font-size: 6vw;
+    }
+}
+
+@media only screen and (min-width: 1000px) { 
+    .img-small {display: none;}
+    .img-wide {display: block;}
+    .picture .box {
+        height: 60%;
+        width: 30%;
+    }
+    .box h1 {
+        font-size: 3vw;
+    }
+}

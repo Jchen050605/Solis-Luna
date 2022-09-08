@@ -1,0 +1,48 @@
+head, body {
+    font-family: "kanit";
+}
+
+.nav-link {
+    font-size: 2em;
+    font-weight: bold;
+    padding: 0 30px;
+}
+
+.nav-header {
+    font-size: 3em;
+}
+
+.nav-item {
+    margin: 20px 0;
+}
+
+.navbar-brand {
+    margin-left: 15px;
+}
+
+.navbar {
+    color: #29395b;
+}
+
+.navbar-collapse {
+    margin-right: 15px;
+}
+
+.spacer {
+    background-color: #e2b07d;
+    height: 100px;
+}
+
+.page-header {
+    background-color: #01033e;
+    padding: 2%;
+    color: white;
+}
+
+.page-header h1 {
+    font-size: 3em;
+}
+
+@media only screen and (max-width: 1200px) { 
+    .nav-header {display: none;}
+}

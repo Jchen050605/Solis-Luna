@@ -21,9 +21,9 @@
 }
 
 .quote {
-    border: #29395b 10px solid;
     margin: 15px auto;
-    padding: 10% 0;
+    background-color: blanchedalmond;
+    padding: 1%;
 }
 
 .img {
@@ -31,14 +31,27 @@
     height: 100%;
 }
 
-.quote h4 {
+.quote h5 {
     color: #25a242;
-    font-size: 2vw;
-    
 }
 
 .quotes {
-    background-color: white;
+    background-color: #29395b;
+    color: black;
+    padding-bottom: 15px;
+}
+
+.why-it-works {
+    margin: 0 auto 100px auto;
+}
+
+.bod {
+    background-color: #29395b;
+    color:white;
+}
+
+.last {
+    margin-bottom: 0;
 }
 
 .gallery {
@@ -54,22 +67,9 @@
 @media only screen and (max-width: 1000px) { 
     .pictext {display: none;}
     .phonetext {display: block;}
-    .quotes {
-        padding: 3%;
-        display: block;
-    }
 }
 
 @media only screen and (min-width: 1000px) { 
     .pictext {display: block;}
     .phonetext {display: none;}
-    .quotes {
-        padding: 40px 80px;
-        margin: 0;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        column-gap: 40px;
-        row-gap: 40px;
-        background-color: white;
-    }
 }

@@ -1,0 +1,51 @@
+.form {
+    background-color: #29395b;
+    padding: 2%;
+}
+
+.vform {
+    background-color: white;
+    padding: 2% 10%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap: 40px;
+    row-gap: 40px;
+}
+
+.input input[type=text], .input input[type=email], .input input[type=number] {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.submit {
+    grid-column: span 2;
+}
+
+.submit input {
+    width: 100%;
+    background-color: #099517;
+    border: none;
+    color: white;
+    font-size: 1.2vw;
+}
+
+.heading {
+    grid-column: span 2;
+}
+
+.checklabel {
+    display: inline;
+    padding-right: 2%;
+}
+
+.input textarea {
+    width: 100%;
+}
+
+a.btn {
+    width: 100%;
+}
+
+.form .container h3 {
+    padding: 0 0 30px 0;
+}

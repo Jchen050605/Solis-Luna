@@ -8,7 +8,7 @@
 }
 
 .form {
-    padding: 20%;
+    padding: 2% 20%;
     background-image: linear-gradient(to bottom right, #29395b, #fbedac);
 }
 
@@ -22,7 +22,7 @@ input, textarea {
 
 .contact-div {
     background-color: white;
-    padding: 20% 10%;
+    padding: 10% 10%;
 }
 
 .form-btn {

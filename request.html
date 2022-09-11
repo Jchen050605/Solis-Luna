@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solis and Luna Arts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit&family=Roboto+Mono:wght@700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&family=Roboto+Mono:wght@700&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Calligraffitti&family=Courgette&family=Kanit:wght@500&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./styles/navbar.css">
+    <link rel="stylesheet" href="./styles/footer.css">
+    <link rel="stylesheet" href="./styles/volunteer.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/Favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/Favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/Favicon/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg static-top">
+        <div class="container-fluid nav">
+            <a class="navbar-brand" href="./index.html">
+                <img src="./images/solis.png" alt="" height="100">
+            </a>
+            <a class="nav-link nav-header" style="color:#01033e">Solis and Luna Arts</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="./index.html">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" aria-current="page" href="./mission.html">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Teams
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item active" href="./art.html">Art</a></li>
+                            <li><a class="dropdown-item" href="./music.html">Music</a></li>
+                            <li><a class="dropdown-item" href="./dance.html">Dancing</a></li>
+                            <li><a class="dropdown-item" href="./writing.html">Writing</a></li>
+                            <li><a class="dropdown-item" href="./fullteam.html">Our Full Team</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./volunteer.html">Volunteer</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Support
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="./contact.html">Contact Us!</a></li>
+                            <li><a class="dropdown-item" href="./donate.html">Donate</a></li>
+                            <li><a class="dropdown-item" href="./request.html">Request a location</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="form">
+        <div class="container">
+            <h1 class="text-center text-white">Request a location</h1>
+            <br>
+            <h3 class="text-center text-white">
+                blah blah blah
+            </h3>
+        </div>
+        <form action="#">
+            <div class="container vform">
+                <div class="heading">
+                    <h1 class="text-center">Request a location</h1>
+                </div>
+                <div class="heading">
+                    <h3 class="">Personal Contact Information</h3>
+                </div>
+                <div class="classifier">
+                    <h4>Name</h4>
+                </div>
+                <div class="input">
+                    <input type="text" required placeholder="First Name">
+                    <input type="text" required placeholder="Last Name">
+                </div>
+                <div class="classifier">
+                    <h4>Email</h4>
+                </div>
+                <div class="input">
+                    <input type="email" required placeholder="myname@example.com">
+                </div>
+                <div class="classifier">
+                    <h4>Phone Number</h4>
+                </div>
+                <div class="input">
+                    <input type="text" required placeholder="123-456-7890">
+                </div>
+                <div class="classifier">
+                    <h4>Address</h4>
+                </div>
+                <div class="input">
+                    <h6 class="checklabel">Address</h6><input type="text" required placeholder="Street Address">
+                    <h6 class="checklabel">Zipcode</h6><input type="number" required placeholder="Zipcode">
+                    <h6 class="checklabel">State</h6><input type="number" required placeholder="State">
+                </div>
+                <div class="heading">
+                    <h3 class="">Location Contact Information</h3>
+                </div>
+                <div class="classifier">
+                    <h4>Location Name</h4>
+                </div>
+                <div class="input">
+                    <input type="text" required placeholder="Location Name">
+                </div>
+                <div class="classifier">
+                    <h4>Location Email</h4>
+                </div>
+                <div class="input">
+                    <input type="email" required placeholder="myname@example.com">
+                </div>
+                <div class="classifier">
+                    <h4>Location Phone Number</h4>
+                </div>
+                <div class="input">
+                    <input type="text" required placeholder="123-456-7890">
+                </div>
+                <div class="classifier">
+                    <h4>Location Address</h4>
+                </div>
+                <div class="input">
+                    <h6 class="checklabel">Address</h6><input type="text" required placeholder="Street Address">
+                    <h6 class="checklabel">Zipcode</h6><input type="number" required placeholder="Zipcode">
+                    <h6 class="checklabel">State</h6><input type="number" required placeholder="State">
+                </div>
+                <div class="classifier">
+                    <h4>Permission</h4>
+                </div>
+                <div class="input">
+                    <h5 class="checklabel">Has the place given permission to host sessions here: </h5><input type="checkbox" name="" id="">
+                </div>
+                <div class="heading">
+                    <h3 class="">Solis and Luna Volunteer Information</h3>
+                </div>
+                <div class="heading">
+                    <h3 class="">Additional Information</h3>
+                </div>
+                <div class="classifier">
+                    <h4>Why do you want to volunteer</h4>
+                </div>
+                <div class="input">
+                    <textarea name="" id="" rows="5"></textarea>
+                </div>
+                <div class="classifier">
+                    <h4>Do you have experience working in therapeutic areas</h4>
+                </div>
+                <div class="input">
+                    <textarea name="" id="" rows="5"></textarea>
+                </div>
+                <div class="classifier">
+                    <h4>How many members do you have willing to volunteer</h4>
+                </div>
+                <div class="input">
+                    <input type="text" required placeholder="">
+                </div>
+                <div class="classifier">
+                    <h4>Why do you want to open a location</h4>
+                </div>
+                <div class="input">
+                    <textarea name="" id="" rows="5"></textarea>
+                </div>
+                <div class="submit">
+                    <a href="./success.html" class="btn"><input class="text-center" value="Submit"></a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <footer class="bg-dark text-white">
+        <div class="container">
+            <div class="footer-grid ">
+                <div class="head">
+                    <h1>About Us</h1>
+                    <h5><a href="./mission.html">Our Mission</a></h5>
+                    <h5><a href="./fullteam.html">Our Team</a></h5>
+                    <h5><a href="./contact.html">Contact Us</a></h5>
+                </div>
+                <div class="head">
+                    <h1>Get Involved</h1>
+                    <h5><a href="./donate.html">Donate</a></h5>
+                    <h5><a href="./volunteer.html">Volunteer</a></h5>
+                    <h5><a href="./request.html">Open a Location</a></h5>
+                </div>
+                <div class="head">
+                    <h1 class="text-center">Want to get notified about updates</h1>
+                    <h5 class="text-center">Subscibe to our email list</h5>
+                    <form action="">
+                        <input class="emailfooter" type="email" placeholder="myname@example.com" required>
+                        <input type="submit" value="Join Now" class="buttonfooter">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

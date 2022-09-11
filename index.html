@@ -16,13 +16,18 @@
     <link rel="stylesheet" href="./styles/navbar.css">
     <link rel="stylesheet" href="./styles/index.css">
     <link rel="stylesheet" href="./styles/footer.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/Favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/Favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/Favicon/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg static-top">
         <div class="container-fluid nav">
-            <a class="navbar-brand" href="#">
-                <a class="navbar-brand" href="./index.html">
+            <a class="navbar-brand" href="./index.html">
+                <img src="./images/solis.png" alt="" height="100">
             </a>
             <a class="nav-link nav-header" style="color:#01033e">Solis and Luna Arts</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -33,7 +38,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                        <a class="nav-link" aria-current="page" href="./index.html">Home</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link" aria-current="page" href="./mission.html">About</a>
@@ -41,19 +46,29 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            Programs
+                            Teams
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="./art.html">Art</a></li>
+                            <li><a class="dropdown-item active" href="./art.html">Art</a></li>
                             <li><a class="dropdown-item" href="./music.html">Music</a></li>
                             <li><a class="dropdown-item" href="./dance.html">Dancing</a></li>
+                            <li><a class="dropdown-item" href="./writing.html">Writing</a></li>
+                            <li><a class="dropdown-item" href="./fullteam.html">Our Full Team</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./blog.html">Blog</a>
+                        <a class="nav-link" href="./volunteer.html">Volunteer</a>
                     </li>
-                    <li class="nav-item nav-contact">
-                        <a class="nav-link" href="./contact.html">Contact Us</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Support
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="./contact.html">Contact Us!</a></li>
+                            <li><a class="dropdown-item" href="./donate.html">Donate</a></li>
+                            <li><a class="dropdown-item" href="./request.html">Request a location</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -135,61 +150,31 @@
         </div>
         
     </div>
-    <footer class="bg-dark text-center text-white">
-        <div class="container p-4">
-            <form action="">
-              <div class="row d-flex justify-content-center">
-                <div class="col-auto">
-                  <p class="pt-2">
-                    Sign up to get notified about a new blog post
-                  </p>
+    <footer class="bg-dark text-white">
+        <div class="container">
+            <div class="footer-grid ">
+                <div class="head">
+                    <h1>About Us</h1>
+                    <h5><a href="./mission.html">Our Mission</a></h5>
+                    <h5><a href="./fullteam.html">Our Team</a></h5>
+                    <h5><a href="./contact.html">Contact Us</a></h5>
                 </div>
-                <div class="col-md-5 col-12">
-                  <div class="form-outline form-white">
-                    <input type="email" class="form-control" placeholder="Email Address"/>
-                  </div>
+                <div class="head">
+                    <h1>Get Involved</h1>
+                    <h5><a href="./donate.html">Donate</a></h5>
+                    <h5><a href="./volunteer.html">Volunteer</a></h5>
+                    <h5><a href="./request.html">Open a Location</a></h5>
                 </div>
-                <div class="col-auto">
-                  <button type="submit" class="btn btn-outline-light">
-                    Subscribe
-                  </button>
+                <div class="head">
+                    <h1 class="text-center">Want to get notified about updates</h1>
+                    <h5 class="text-center">Subscibe to our email list</h5>
+                    <form action="">
+                        <input class="emailfooter" type="email" placeholder="myname@example.com" required>
+                        <input type="submit" value="Join Now" class="buttonfooter">
+                    </form>
                 </div>
-              </div>
-            </form>
-          <div class="footer-grid">
-                <div>
-                    <h1 class="white-text">Home</h1>
-                    <div>
-                        <a href="./index.html"><h4>Home Page</h4></a>
-                    </div>
-                </div>
-                <div>
-                    <h1 class="white-text">About</h1>
-                    <div>
-                        <a href="./mission.html"><h4>Our Mission</h4></a>
-                    </div>
-                </div>
-                <div>
-                    <h1 class="white-text">Program</h1>
-                    <div>
-                        <a href="./art.html"><h4>Art</h4></a>
-                        <a href="./dance.html"><h4>Dance</h4></a>
-                        <a href="./music.html"><h4>Music</h4></a>
-                    </div>
-                </div>
-                <div>
-                    <h1 class="white-text">Blog</h1>
-                    <div>
-                        <a href="./blog.html"><h4>Blog Page</h4></a>
-                    </div>
-                </div>
-                <div>
-                    <h1 class="white-text">Contact</h1>
-                    <div>
-                        <a href="./contact.html"><h4>Contact</h4></a>
-                    </div>
-                </div>
-          </div>
+            </div>
+        </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"

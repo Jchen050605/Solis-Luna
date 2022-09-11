@@ -117,6 +117,22 @@
 @media only screen and (max-width: 1000px) { 
     .pictext {display: none;}
     .phonetext {display: block;}
+    .persons {
+        display: block;
+        padding: 0;
+    }
+    .pfp {
+        min-height: 200px;
+        min-width: 200px;
+    }
+    .person h5 {
+        font-size: 5vw;
+    }
+    
+    .person h6 {
+        font-size: 4vw;
+        font-family: "Courgette";
+    }
 }
 
 @media only screen and (min-width: 1000px) { 

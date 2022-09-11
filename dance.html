@@ -65,6 +65,130 @@
     </div>
     <h1 class="phonetext text-center" style="font-size: 11vw;">DANCE</h1>
     <div class="spacer w-100"></div>
+    <div class="spacer w-100"></div>
+    <div class="team">
+        <h1 class="text-center">Our Team</h1>
+        <div class="persons">
+            <div class="person" data-modal="1">
+                <center>
+                    <img src="./images/PFP/placeholder-person.jpg" alt="" class="pfp">
+                </center>
+                <h5 class="text-center">Place Holder</h5>
+                <h6 class="text-center">Dance</h6>
+            </div>
+            <div class="modal fade" id="modal-1" tabindex="-1" aria-labelledby="modal-1-label"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-1-label">Place Holder</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="image">
+                                <center>
+                                    <img src="./images/PFP/placeholder-person.jpg" alt="" class="pfp">
+                                </center>
+                            </div>
+                            <div class="facts">
+                                <h4>Name</h4>
+                                <h5>Place Holder</h5>
+                                <br>
+                                <h4>Position</h4>
+                                <h5>Dance</h5>
+                                <br>
+                                <h4>Region</h4>
+                                <h5>US-EAST</h5>
+                                <h5>US-EAST</h5>
+                                <br>
+                            </div>
+                            <div class="fact">
+                                <h4 class="text-center">Facts</h4>
+                                <ul>
+                                    <li>
+                                        <h6>AB</h6>
+                                    </li>
+                                    <li>
+                                        <h6>BC</h6>
+                                    </li>
+                                    <li>
+                                        <h6>VD</h6>
+                                    </li>
+                                    <li>
+                                        <h6>CD</h6>
+                                    </li>
+                                    <li>
+                                        <h6>AX</h6>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="person" data-modal="2">
+                <center>
+                    <img src="./images/PFP/Samantha_Artega.jpg" alt="" class="pfp">
+                </center>
+                <h5 class="text-center">Samantha (Sam) Arteaga</h5>
+                <h6 class="text-center">Dance Team Leader</h6>
+            </div>
+            <div class="modal fade" id="modal-2" tabindex="-1" aria-labelledby="modal-2-label"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-2-label">Samantha (Sam) Arteaga</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="image">
+                                <center>
+                                    <img src="./images/PFP/Samantha_Artega.jpg" alt="" class="pfp">
+                                </center>
+                            </div>
+                            <div class="facts">
+                                <h4>Name</h4>
+                                <h5>Samantha (Sam) Arteaga</h5>
+                                <br>
+                                <h4>Position</h4>
+                                <h5>Dance Team Leader</h5>
+                                <br>
+                                <h4>Region</h4>
+                                <h5>US-EAST</h5>
+                                <br>
+                            </div>
+                            <div class="fact">
+                                <h4 class="text-center">Facts</h4>
+                                <ul>
+                                    <li>
+                                        <h6>AB</h6>
+                                    </li>
+                                    <li>
+                                        <h6>BC</h6>
+                                    </li>
+                                    <li>
+                                        <h6>VD</h6>
+                                    </li>
+                                    <li>
+                                        <h6>CD</h6>
+                                    </li>
+                                    <li>
+                                        <h6>AX</h6>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     <div class="bod">
         <h1 class="text-center x" style="padding-top: 15px;">Why It Works</h1>
         <h3 class="why-it-works container text-center">
@@ -180,6 +304,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            var myModal = new bootstrap.Modal(document.getElementById("modal-1"), {});
+            document.querySelectorAll(".person").forEach((elm) => {
+                elm.addEventListener("click", (event) => {
+                    var myModal = new bootstrap.Modal(document.getElementById("modal-"+event.currentTarget.dataset.modal), {});
+                    myModal.show()
+                })
+            });
+            
+        </script>
 </body>
 
 </html>

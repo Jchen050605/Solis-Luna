@@ -3,9 +3,12 @@ head, body {
 }
 
 .nav-link {
+    padding: 0 30px;
+}
+
+.nav-link {
     font-size: 2em;
     font-weight: bold;
-    padding: 0 30px;
 }
 
 .nav-header {
@@ -13,7 +16,7 @@ head, body {
 }
 
 .nav-item {
-    margin: 20px 0;
+    margin: 20px 8px;
 }
 
 .navbar-brand {

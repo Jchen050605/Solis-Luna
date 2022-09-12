@@ -52,11 +52,11 @@
                             Teams
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item active" href="./art.html">Art</a></li>
+                            <li><a class="dropdown-item" href="./fullteam.html">Our Full Team</a></li>
+                            <li><a class="dropdown-item" href="./art.html">Art</a></li>
                             <li><a class="dropdown-item" href="./music.html">Music</a></li>
                             <li><a class="dropdown-item" href="./dance.html">Dancing</a></li>
                             <li><a class="dropdown-item" href="./writing.html">Writing</a></li>
-                            <li><a class="dropdown-item" href="./fullteam.html">Our Full Team</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -93,7 +93,8 @@
                 <h5 class="text-center">Samatha Arteage</h5>
                 <h6 class="text-center">Dancing Team Leader</h6>
             </div>
-            <div class="modal fade" id="modal-2" tabindex="-1" aria-labelledby="modal-2-label" aria-hidden="true">
+            <div class="modal fade" id="modal-2" tabindex="-1" aria-labelledby="modal-2-label"
+                aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -113,31 +114,31 @@
                                 <h4>Position</h4>
                                 <h5>Dancing Team Leader</h5>
                                 <br>
-                                <h4>Location</h4>
+                                <h4>School</h4>
                                 <h5>Bergen County Academies</h5>
                                 <br>
                             </div>
                         </div>
                         <div class="fact">
-                            <h4 class="text-center">Extra Information</h4>
-                            <ul>
-                                <l1>
-                                    <h6></h6>
-                                </l1>
-                                <l1>
-                                    <h6></h6>
-                                </l1>
-                                <l1>
-                                    <h6></h6>
-                                </l1>
-                                <l1>
-                                    <h6></h6>
-                                </l1>
-                                <l1>
-                                    <h6></h6>
-                                </l1>
-                            </ul>
-                            <br>
+                            <h4 class="text-center">About Samantha!</h4>
+                                <ul>
+                                    <l1>
+                                        <h6>Dancer at I Love Dance and The Source Dance Lab</h6>
+                                    </l1>
+                                    <l1>
+                                        <h6>Competed in a multitude of sports</h6>
+                                    </l1>
+                                    <l1>
+                                        <h6>2x Auditory Speech Competition Winner</h6>
+                                    </l1>
+                                    <l1>
+                                        <h6>AMST in Bergen County Academies</h6>
+                                    </l1>
+                                    <l1>
+                                        <h6>Loves meeting and interacting with new people</h6>
+                                    </l1>
+                                </ul>
+                                <br>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -232,7 +233,6 @@
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-        var myModal = new bootstrap.Modal(document.getElementById("modal-1"), {});
         document.querySelectorAll(".person").forEach((elm) => {
             elm.addEventListener("click", (event) => {
                 var myModal = new bootstrap.Modal(document.getElementById("modal-" + event.currentTarget.dataset.modal), {});

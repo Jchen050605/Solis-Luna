@@ -101,6 +101,10 @@
     display: none;
 }
 
+.program h1 {
+    font-family: "Dancing Script";
+}
+
 @media only screen and (max-width: 1000px) { 
     .programs {
         grid-template-columns: 1fr;
@@ -123,6 +127,9 @@
     }
     .worksbox {
         border: none;
+    }
+    .emoji {
+        font-size: 7vw;
     }
 }
 

@@ -7,12 +7,12 @@ head, body {
 }
 
 .nav-link {
-    font-size: 2em;
+    font-size: 1.5em;
     font-weight: bold;
 }
 
 .nav-header {
-    font-size: 3em;
+    font-size: 1.8vw;
 }
 
 .nav-item {

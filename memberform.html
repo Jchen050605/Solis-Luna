@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="./styles/navbar.css">
     <link rel="stylesheet" href="./styles/footer.css">
     <link rel="stylesheet" href="./styles/volunteer.css">
+    <link rel="stylesheet" href="./styles/form.css">
 
     <link rel="apple-touch-icon" sizes="180x180" href="./images/Favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./images/Favicon/favicon-32x32.png">
@@ -80,88 +81,76 @@
         </div>
     </nav>
     <div class="form">
-        <div class="container">
-            <h1 class="text-center text-white">Volunteer</h1>
-            <br>
-            <h3 class="text-center text-white">
-                Please fill out the form below to volunteer!
-            </h3>
-        </div>
         <form action="#">
             <div class="container vform">
                 <div class="heading">
-                    <h1 class="text-center">Volunteer</h1>
-                </div>
-                <div class="heading">
-                    <h3 class="">Solis and Luna Volunteer Information</h3>
+                    <h1 class="text-center head">Join our Team!</h1>
                 </div>
                 <div class="classifier">
-                    <h4>Name</h4>
+                    <h4>Name <i>*</i></h4>
                 </div>
                 <div class="input">
                     <input type="text" required placeholder="First Name">
                     <input type="text" required placeholder="Last Name">
                 </div>
                 <div class="classifier">
-                    <h4>Email</h4>
+                    <h4>Age <i>*</i></h4>
                 </div>
                 <div class="input">
-                    <input type="email" required placeholder="Email">
+                    <input type="number" required placeholder="">
                 </div>
                 <div class="classifier">
-                    <h4>Phone Number</h4>
+                    <h4>Which team would you like to join? <i>*</i></h4>
                 </div>
                 <div class="input">
-                    <input type="text" required placeholder="Phone Number">
+                    <div>
+                        <h5 class="checklabel">Art: </h5><input type="checkbox" name="" id="">
+                    </div>
+                    <div>
+                        <h5 class="checklabel">Dancing: </h5><input type="checkbox" name="" id="">
+                    </div>
+                    <div>
+                        <h5 class="checklabel">Music: </h5><input type="checkbox" name="" id="">
+                    </div>
+                    <div>
+                        <h5 class="checklabel">Writing: </h5><input type="checkbox" name="" id="">
+                    </div>
                 </div>
                 <div class="classifier">
-                    <h4>Address</h4>
+                    <h4>What country do you live in? <i>*</i></h4>
+                </div>
+                <div class="input">
+                    <input type="text" required placeholder="Country">
+                </div>
+                <div class="classifier">
+                    <h4>What U.S State do you live in? <i>*</i></h4>
                 </div>
                 <div class="input">
                     <input type="text" required placeholder="State">
                 </div>
                 <div class="classifier">
-                    <h4>Which programs would you like to volunteer for?</h4>
+                    <h4>Upload a picture of yourself, make sure your face is visible <i>*</i></h4>
                 </div>
                 <div class="input">
-                    <div>
-                        <h5 class="checklabel">Art Team Member: </h5><input type="checkbox" name="" id="">
-                    </div>
-                    <div>
-                        <h5 class="checklabel">Dancing Team Member: </h5><input type="checkbox" name="" id="">
-                    </div>
-                    <div>
-                        <h5 class="checklabel">Music Team Member: </h5><input type="checkbox" name="" id="">
-                    </div>
-                    <div>
-                        <h5 class="checklabel">Writing Team Member: </h5><input type="checkbox" name="" id="">
-                    </div>
+                    <input type="file" required>
                 </div>
                 <div class="classifier">
-                    <h4>Why do you want to volunteer?</h4>
+                    <h4>Write a short bio <i>*</i></h4>
                 </div>
                 <div class="input">
                     <textarea name="" id="" rows="5"></textarea>
                 </div>
                 <div class="classifier">
-                    <h4>Do you have experience working in therapeutic areas?</h4>
+                    <h4>How did you hear about us? (one sentence)? <i>*</i></h4>
                 </div>
                 <div class="input">
                     <textarea name="" id="" rows="5"></textarea>
                 </div>
                 <div class="classifier">
-                    <h4>If your state doesn't have a chapter, are you interested in becoming one?</h4>
+                    <h4>Personal Email <i>*</i></h4>
                 </div>
                 <div class="input">
-                    <div>
-                        <input type="text" required placeholder="Yes/No">
-                    </div>
-                </div>
-                <div class="classifier">
-                    <h4>Any questions?</h4>
-                </div>
-                <div class="input">
-                    <textarea name="" id="" rows="5"></textarea>
+                    <input type="email" required placeholder="Email">
                 </div>
                 <div class="submit">
                     <a href="./success.html" class="btn"><input class="text-center" value="Submit"></a>;

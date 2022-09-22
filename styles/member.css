@@ -1,0 +1,22 @@
+.headings h3{
+    background-color: rgb(175, 207, 247);
+    font-size: 2vw;
+    margin-bottom: 20px;
+}
+
+.headings h5{
+    font-size: 1.6vw;
+    font-weight: bolder;
+}
+
+.headings h5{
+    font-size: 1.4vw;
+}
+
+.categories {
+    padding: 2% 10%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 40px;
+    row-gap: 40px;
+}

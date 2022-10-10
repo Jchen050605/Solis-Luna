@@ -21,11 +21,13 @@
 }
 
 .submit input {
-    width: 100%;
+    width: 20%;
+    margin: auto;
     background-color: #099517;
     border: none;
     color: white;
     font-size: 1.2vw;
+    padding: 1%;
 }
 
 .heading {

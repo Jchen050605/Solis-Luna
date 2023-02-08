@@ -77,13 +77,11 @@
     top: 50%;
     left: 25%;
     transform: translate(-50%, -50%);
-    background-color: #29395b;
     width: 30%;
     height: 60%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: #ffffff dashed 7px;
 }
 
 .box h1 {

@@ -63,9 +63,10 @@
 }
 
 .program h4 {
-    font-size: 1.5em;
+    font-size: 1.5 em;
     font-family: "Lato";
     padding: 5%;
+
 }
 
 .picture {
@@ -100,7 +101,7 @@
 }
 
 .program h1 {
-    font-family: "Dancing Script";
+    font-family: 'Ubuntu', sans-serif;
 }
 
 @media only screen and (max-width: 1000px) { 

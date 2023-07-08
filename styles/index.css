@@ -1,15 +1,16 @@
 .welcome {
-    margin-top: 15px;
-    padding: 3%;
+    padding: 30px 3% 0 3%;
+    background-color: #d5f2ff;
 }
 
 .welcome h1 {
     color: #29395b;
-    font-size: 4em;
 }
 
 .welcome h4 {
-    font-size: 1.5em;
+    font-size: 2.22em;
+    width: 80%;
+    margin-left: 10%;
 }
 
 .programs {
@@ -32,6 +33,9 @@
     font-family: "kanit";
 }
 
+.picture img {
+    max-height: 90vh;
+}
 
 .works {
     background-color: #29395b;
@@ -75,18 +79,38 @@
 
 .picture .box {
     position: absolute;
-    top: 50%;
-    left: 25%;
+    top: 70%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    width: 30%;
+    min-width: 70vw;
     height: 60%;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+.buttons {
+    margin-top:20px;
+}
+
+.buttons a {
+    margin: 0 25px;
+    text-align: center;
+    border-radius: 20px;
+    padding: 0 50px;
+    font-size: 1.9em;
+    color:white;
+    text-decoration: none;
+    background-color: #4b70ad;
+    transition: all 0.2s;
+}
+
+.buttons a:hover {
+    background-color: #243a5e;
 }
 
 .box h1 {
-    margin: 10px;
     text-align: center;
     font-size: 3vw;
 }
@@ -94,6 +118,24 @@
 .emoji {
     font-size: 2vw;
     display: inline;
+}
+
+.welcome-info {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    padding: 30px 50px 60px 50px;
+    column-gap: 50px;
+}
+
+.welcome h1 {
+    font-size: 5em;
+}
+
+.welcome-text-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .img-small {

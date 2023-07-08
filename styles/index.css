@@ -59,7 +59,7 @@
 }
 
 .learn-more {
-    display: block; 
+    display: block;
     background-color: #29395b;
     color: white;
     padding: 2% 4%;
@@ -95,7 +95,7 @@
 }
 
 .buttons {
-    margin-top:20px;
+    margin-top: 20px;
 }
 
 .buttons a {
@@ -104,7 +104,7 @@
     border-radius: 20px;
     padding: 0 50px;
     font-size: 1.9em;
-    color:white;
+    color: white;
     text-decoration: none;
     background-color: #4b70ad;
     transition: all 0.2s;
@@ -116,7 +116,7 @@
 
 .box h1 {
     text-align: center;
-    font-size: 3vw;
+    font-size: 3em;
 }
 
 .emoji {
@@ -150,52 +150,64 @@
     font-family: 'Ubuntu', sans-serif;
 }
 
-.box h2{
+.box h2 {
     color: #fdeba2;
     font-size: 5em;
 }
 
-@media only screen and (max-width: 1000px) { 
+@media only screen and (max-width: 1000px) {
     .programs {
         grid-template-columns: 1fr;
-        width:100%;
-        padding:  40px 0;
+        width: 100%;
+        padding: 40px 0;
     }
 }
 
-@media only screen and (max-width: 1000px) { 
-    .img-small {display: block;}
-    .img-wide {display: none;}
+@media only screen and (max-width: 1000px) {
+    .img-small {
+        display: block;
+    }
+
+    .img-wide {
+        display: none;
+    }
+
     .picture .box {
         height: 40%;
         width: 50%;
         padding: 30%;
         left: 50%;
     }
+
     .box h1 {
         font-size: 6vw;
     }
+
     .worksbox {
         border: none;
     }
+
     .emoji {
         font-size: 7vw;
     }
 }
 
-@media only screen and (min-width: 1000px) { 
-    .img-small {display: none;}
-    .img-wide {display: block;}
+@media only screen and (min-width: 1000px) {
+    .img-small {
+        display: none;
+    }
+
+    .img-wide {
+        display: block;
+    }
+
     .picture .box {
         height: 60%;
         width: 30%;
     }
-    .box h1 {
-        font-size: 3vw;
-    }
 }
 
-@media only screen and (max-width: 1650px) {
+@media only screen and (max-width: 1674px) {
     .buttons a {
         display: block;
         margin: 20px 0px;

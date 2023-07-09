@@ -86,16 +86,11 @@
 .picture .box {
     position: absolute;
     top: 50%;
-    left: 30%;
-    transform: translate(-50%, -50%);
-    min-width: 70vw;
-    height: 60%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    left: 1%;
+    transform: translate(0, -20%);
+    min-width: 50vw;
     color: white;
     font-weight: normal;
-    flex-direction: column;
 }
 
 .buttons {
@@ -119,7 +114,6 @@
 }
 
 .box h1 {
-    text-align: center;
     font-size: 3em;
 }
 

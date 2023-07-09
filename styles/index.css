@@ -1,14 +1,16 @@
 .welcome {
-    padding: 30px 3% 0 3%;
-    background-color: #d5f2ff;
+    padding: 75px 0;
+    background-color: white;
 }
 
 .welcome h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
     color: #29395b;
 }
 
 .welcome h4 {
-    font-size: 2.22em;
+    font-size: 1.6em;
     width: 80%;
     margin-left: 10%;
 }
@@ -71,7 +73,7 @@
 }
 
 .program h4 {
-    font-size: 1.5 em;
+    font-size: 1.5em;
     font-family: "Lato";
     padding: 5%;
 
@@ -84,13 +86,15 @@
 .picture .box {
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 30%;
     transform: translate(-50%, -50%);
     min-width: 70vw;
     height: 60%;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
+    font-weight: normal;
     flex-direction: column;
 }
 
@@ -124,22 +128,20 @@
     display: inline;
 }
 
-.welcome-info {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    padding: 30px 50px 60px 50px;
-    column-gap: 50px;
-}
-
-.welcome h1 {
-    font-size: 5em;
-}
-
 .welcome-text-container {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
+}
+
+.welcome-link, .team-link, .music-link {
+    text-decoration: none;
+    color:black;
+    font-size: 1.5em;
+    background-color: #fdeba2;
+    margin: 20px;
+    width: 30%;
+    display: inline-block;
+    border-radius: 50px;
 }
 
 .img-small {
@@ -151,8 +153,31 @@
 }
 
 .box h2 {
-    color: #fdeba2;
     font-size: 5em;
+}
+
+.team, .music {
+    background-color: #4b70ad;
+    padding: 100px;
+    color: white;
+    text-align: center;
+}
+
+.team h1, .music h1 {
+    font-size: 3em;
+}
+
+.small-width {
+    width: 60% !important;
+    margin-left: 20% !important;
+}
+
+.music {
+    background-color: #29395b !important;
+}
+
+.music h4 {
+    margin: 20px 0;
 }
 
 @media only screen and (max-width: 1000px) {

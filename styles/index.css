@@ -1,19 +1,3 @@
-.welcome {
-    padding: 75px 0;
-    background-color: white;
-}
-
-.welcome h1 {
-    font-size: 3.5em;
-    margin-bottom: 20px;
-    color: #29395b;
-}
-
-.welcome h4 {
-    font-size: 1.6em;
-    width: 80%;
-    margin-left: 10%;
-}
 
 .programs {
     padding: 40px 80px;
@@ -122,12 +106,7 @@
     display: inline;
 }
 
-.welcome-text-container {
-    width: 100%;
-    text-align: center;
-}
-
-.welcome-link, .team-link, .music-link {
+.section a {
     text-decoration: none;
     color:black;
     font-size: 1.5em;
@@ -150,14 +129,12 @@
     font-size: 5em;
 }
 
-.team, .music {
-    background-color: #4b70ad;
+.section {
     padding: 100px;
-    color: white;
     text-align: center;
 }
 
-.team h1, .music h1 {
+.section h1 {
     font-size: 3em;
 }
 
@@ -166,12 +143,62 @@
     margin-left: 20% !important;
 }
 
-.music {
-    background-color: #29395b !important;
+.welcome h1 {
+    color: #29395b;
 }
 
-.music h4 {
-    margin: 20px 0;
+.team {
+    background-color: #4b70ad;
+    color: white;
+}
+
+.review {
+    background-color: #29395b;
+    color:white;
+}
+
+.reviews {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 20px 50px;
+    grid-gap: 30px;
+}
+
+.r {
+    background-color: #4b70ad;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.name {
+    color: #fad783;
+}
+
+.impact {
+    background-color: rgb(20, 33, 55);
+    color: white;
+}
+
+.nums {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    color:#fad783;
+}
+
+.i {
+    font-size: 2em;
+
+}
+
+.r h3 {
+    font-size: 1em;
+    margin-bottom: 20px;
+}
+
+.r h2 {
+    font-size: 1em;
 }
 
 @media only screen and (max-width: 1000px) {

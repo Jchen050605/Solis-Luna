@@ -1,6 +1,6 @@
 .persons {
     padding: 20px 2% 2% 2%;
-    margin:  0 100px 100px 100px;
+    margin:  0 100px 0 100px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     column-gap: 40px;
@@ -33,3 +33,11 @@
     column-gap: 40px;
     row-gap: 40px;
 }
+
+.pfp {
+    object-fit: cover;
+    width: 10vw;
+    height: 10vw;
+    border-radius: 50%;
+    margin: 0 auto;
+  }

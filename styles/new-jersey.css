@@ -98,3 +98,7 @@
 .image {
     border-radius: 20px;
 }
+
+.persons {
+    margin-bottom: 0 !important;
+}

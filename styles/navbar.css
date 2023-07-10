@@ -7,11 +7,6 @@ body {
     width: 99vw;
 }
 
-body { 
-    opacity: 0;
-    transition: opacity .5s;
-}
-
 .nav-link {
     padding: 0 30px;
 }

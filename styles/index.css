@@ -70,7 +70,7 @@
 .picture .box {
     position: absolute;
     top: 50%;
-    left: 1%;
+    left: 5%;
     transform: translate(0, -20%);
     min-width: 50vw;
     color: white;

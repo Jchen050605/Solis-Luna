@@ -56,6 +56,11 @@ body {
     font-size: 3em;
 }
 
+.margin-top {
+    margin-top: 150px;
+}
+
 @media only screen and (max-width: 1300px) { 
     .nav-header {display: none;}
 }
+

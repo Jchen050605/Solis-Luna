@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="./styles/navbar.css">
     <link rel="stylesheet" href="./styles/footer.css">
     <link rel="stylesheet" href="./styles/fullteam.css">
+    <link rel="stylesheet" href="./styles/team.css">
 
     <link rel="apple-touch-icon" sizes="180x180" href="./images/Favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./images/Favicon/favicon-32x32.png">
@@ -27,12 +28,12 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <nav class="navbar navbar-expand-lg nav-light">
         <div class="container-fluid nav">
             <a class="navbar-brand" href="./index.html">
                 <img src="./images/solis.png" alt="" height="100">
             </a>
-            <a class="nav-link nav-header" style="color:#01033e">Solis and Luna Arts</a>
+            <a class="nav-link nav-header" style="color:black !important;">Solis and Luna Arts</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -44,7 +45,7 @@
                         <a class="nav-link" aria-current="page" href="./index.html">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link" aria-current="page" href="./mission.html">About</a>
+                        <a class="nav-link" aria-current="page" href="./mission.html">About Us</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -52,34 +53,26 @@
                             Teams
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="./fullteam.html">Our Main Team</a></li>
-                            <li><a class="dropdown-item" href="./music.html">Music</a></li>
-                            <li><a class="dropdown-item" href="./art.html">Art</a></li>
-                            <li><a class="dropdown-item" href="./dance.html">Dancing</a></li>
-                            <li><a class="dropdown-item" href="./writing.html">Writing</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Support
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="./contact.html">Contact Us!</a></li>
-                            <li><a class="dropdown-item" href="./donate.html">Donate</a></li>
+                            <li><a class="dropdown-item" href="./fullteam.html">Our Leaders</a></li>
+                            <li><a class="dropdown-item" href="./music.html">New Jersy</a></li>
+                            <li><a class="dropdown-item" href="./art.html">New York</a></li>
+                            <li><a class="dropdown-item" href="./dance.html">Florida</a></li>
                         </ul>
                     </li>
                     <li class="nav-item volunteer">
                         <a class="nav-link" href="./volunteer.html">Volunteer</a>
                     </li>
-                    <li class="nav-item dropdown member">
-                        <a class="nav-link" aria-current="page" href="./member.html">New Members</a>
+                    <li class="nav-item blog">
+                        <a class="nav-link" href="./volunteer.html">Blog</a>
+                    </li>
+                    <li class="nav-item blog">
+                        <a class="nav-link" href="./volunteer.html">Support Us</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="team"></div>
+    <div class="margin-top"></div>
     <h3 class="text-center head">Our Full Team</h3>
     <div class="persons">
         <div class="person" data-modal="4">
@@ -509,7 +502,6 @@
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-        var myModal = new bootstrap.Modal(document.getElementById("modal-1"), {});
         document.querySelectorAll(".person").forEach((elm) => {
             elm.addEventListener("click", (event) => {
                 var myModal = new bootstrap.Modal(document.getElementById("modal-" + event.currentTarget.dataset.modal), {});

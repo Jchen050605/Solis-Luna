@@ -106,17 +106,6 @@
     display: inline;
 }
 
-.section a {
-    text-decoration: none;
-    color:black;
-    font-size: 1.5em;
-    background-color: #fdeba2;
-    margin: 20px;
-    width: 30%;
-    display: inline-block;
-    border-radius: 50px;
-}
-
 .img-small {
     display: none;
 }
@@ -129,15 +118,6 @@
     font-size: 5em;
 }
 
-.section {
-    padding: 100px;
-    text-align: center;
-}
-
-.section h1 {
-    font-size: 3em;
-}
-
 .small-width {
     width: 60% !important;
     margin-left: 20% !important;
@@ -148,12 +128,10 @@
 }
 
 .team {
-    background-color: #4b70ad;
     color: white;
 }
 
 .review {
-    background-color: #29395b;
     color:white;
 }
 
@@ -177,7 +155,6 @@
 }
 
 .impact {
-    background-color: rgb(20, 33, 55);
     color: white;
 }
 

@@ -1,6 +1,6 @@
 .reveal {
     opacity: 0;
-    transition: 2s all ease;
+    transition: 2s opacity ease;
 }
 
 .reveal.active {

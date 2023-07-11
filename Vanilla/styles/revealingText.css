@@ -1,8 +1,0 @@
-.reveal {
-    opacity: 0;
-    transition: 2s opacity ease;
-}
-
-.reveal.active {
-    opacity: 1;
-}

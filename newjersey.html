@@ -94,30 +94,7 @@
     </div>
     <div class="events section section1">
         <h1 class="text-center reveal">View Our Latest Events</h1>
-        <div class="event reveal">
-            <div class="image"></div>
-            <div class="info">
-                <h2>Floral Arrangement Event at New Bridge Medical Center</h2>
-                <h5>July 19th, 2023</h5>
-                <h4>For patients at the New Bridge Medical Center, Solis and Luna Arts members taught a floral arrangements class</h4>
-            </div>
-        </div>
-        <div class="event reveal">
-            <div class="image"></div>
-            <div class="info">
-                <h2>Floral Arrangement Event at New Bridge Medical Center</h2>
-                <h5>July 19th, 2023</h5>
-                <h4>For patients at the New Bridge Medical Center, Solis and Luna Arts members taught a floral arrangements class</h4>
-            </div>
-        </div>
-        <div class="event reveal">
-            <div class="image"></div>
-            <div class="info">
-                <h2>Floral Arrangement Event at New Bridge Medical Center</h2>
-                <h5>July 19th, 2023</h5>
-                <h4>For patients at the New Bridge Medical Center, Solis and Luna Arts members taught a floral arrangements class</h4>
-            </div>
-        </div>
+        <div class="eventsHolder"></div>
         <div class="load-more reveal">
             <h3>Load More</h3>
         </div>
@@ -151,6 +128,7 @@
     </footer>
     <script src="./scripts/revealingText.js"></script>
     <script src="./scripts/makePerson.js"></script>
+    <script src="./scripts/events.js"></script>
     <script>
         let makePerson = document.querySelector(".persons")
         createPerson(makePerson, "Chloe Cho", "images/PFP/Chloe_Cho.webp","", "President")
@@ -160,6 +138,17 @@
         createPerson(makePerson, "Sanda Rakotobe-Joel", "images/PFP/Sanda_Rakotobe-Joel.jpeg")
         createPerson(makePerson, "David Kim", "images/PFP/David_Kim.webp")
         createPerson(makePerson, "Yasmin Hassouni", "images/PFP/Yasmin_Hassouni.jpeg","","Writing")
+
+        createEvent("Saint Joseph's Children Hospital Binder Autism Center Art Show", "November 19, 2022", "Solis and Luna Arts was asked to perform at St. Joseph's Children Hospital Binder Autism Center Art Show in Paterson, New Jersey.")
+        createEvent("New Bridge Medical Center","December 9, 2022","Solis and Luna Arts had their first formal performance and performed for the residents in New Bridge Medical Center in Paramus, New Jersey.")
+        createEvent("Back to Bach Collaboration Panel","February 1, 2023","Solis and Luna Arts had a collaboration with Back to Bach, a nonprofit organization that aims to inspire and develop music and arts education to children while teaching them the value of hard work and passion. In the panel, the soloists discussed how they incorporated music into their college applications.")
+        createEvent("New Bridge Medical Center","February 17, 2023","Solis and Luna Arts revisited New Bridge Medical Center and performed classics for the patients.")
+        createEvent("Paramus Veterans Memorial Home","February 18, 2023","Solis and Luna Arts performed at the Paramus Veterans Memorial Home in Paramus, New Jersey. It was an honor to play for the veterans.")
+        createEvent("BCA PPO Picnic","May 21, 2023","Solis and Luna Arts had a table at the PPO picnic at the Bergen County Academies campus. There, members promoted and recruited people for our organization.")
+        createEvent("Back to Bach Collaboration Panel","June 7, 2023","Solis and Luna Arts had another collaboration with Back to Bach. The soloists discussed how music was incorporated into their college applications.")
+        createEvent("Mockingbird Melody Collaboration at Calvary Korean Methodist Church","June 19, 2023","Solis and Luna Arts performed a charity concert at the Calvary Korean United Methodist Church in East Brunswick, New Jersey, with Mockingbird Melody. Mockingbird Melody is a nonprofit organization that spreads their love for music by performing at senior homes, hospital centers, libraries, and raising money for charities through charity concerts. We raised over 200 dollars for Mercy Ships.")
+
+        loadStartingThreeEvents()
     </script>
 </body>
 </html>

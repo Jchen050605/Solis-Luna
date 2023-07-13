@@ -2,10 +2,13 @@ function createPerson(parentElm, name, pathToImage, bio, role=false) {
     let personDiv = document.createElement("div")
     personDiv.classList.add("person")
 
+    personDiv.classList.add("reveal")
+
     let center = document.createElement("center")
     
     let profileImage = document.createElement("img")
     profileImage.src = pathToImage
+    profileImage.classList.add("pfp")
 
     center.appendChild(profileImage)
 

@@ -79,7 +79,7 @@
         </div>
     </nav>
     <div class="picture">
-        <img src="./images/new-jersey.jpg" alt="" />
+        <img src="./images/Banners/new-jersey.jpg" alt="" />
         <div class="box">
             <div class="items">
                 <h2>New Jersey</h2>
@@ -87,82 +87,10 @@
             </div>
         </div>
     </div>
+    <div class="spacer"></div>
     <div class="team section section2">
-        <h1 class="text-center reveal">Our Team</h1>
-        <div class="persons">
-            <div class="person" data-modal="4">
-                <center>
-                    <img src="./images/PFP/placeholder-person.jpg" alt="" class="pfp">
-                </center>
-                <h5 class="text-center">Chloe Cho</h5>
-                <h6 class="text-center">President</h6>
-            </div>
-            <div class="modal fade" id="modal-4" tabindex="-1" aria-labelledby="modal-4-label" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modal-4-label">Chloe Cho</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="image">
-                                <center>
-                                    <img src="./images/PFP/placeholder-person.jpg" alt="" class="pfp">
-                                </center>
-                            </div>
-                            <div class="facts">
-                                <h4>Name</h4>
-                                <h5>Chloe Cho</h5>
-                                <br>
-                                <h4>Position</h4>
-                                <h5>President</h5>
-                                <br>
-                                <h4>School</h4>
-                                <h5>Bergen County Academies</h5>
-                                <br>
-                            </div>
-                        </div>
-                        <div class="fact">
-                            <h4 class="text-center">About Chloe!</h4>
-                            <ul>
-                                <li>
-                                    <h6>BCA Solis and Luna Arts Club founder (if it works out i’ll out this in)</h6>
-                                </li>
-                                <li>
-                                    <h6>NYYS violinist</h6>
-                                </li>
-                                <li>
-                                    <h6>All State Orchestra (1st violin) </h6>
-                                </li>
-                                <li>
-                                    <h6>CYO Orchestra</h6>
-                                </li>
-                                <li>
-                                    <h6>School Orchestra (Concertmaster)</h6>
-                                </li>
-                                <li>
-                                    <h6>National Tri-M Honor Society</h6>
-                                </li>
-                                <li>
-                                    <h6>Performed at Carnegie Hall, Lincoln Center, Scandinavia House, and more
-                                    </h6>
-                                </li>
-                                <li>
-                                    <h6>The Presidential's Volunteer Service Award, Gold Award (100+ hours)</h6>
-                                </li>
-                                <li>
-                                    <h6>Enjoys creative writing and drawing</h6>
-                                </li>
-                            </ul>
-                            <br>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <h1 class="text-center reveal ourteam">Our Team</h1>
+        <div class="persons"></div>
     </div>
     <div class="events section section1">
         <h1 class="text-center reveal">View Our Latest Events</h1>
@@ -221,19 +149,17 @@
             </div>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-        crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-        document.querySelectorAll(".person").forEach((elm) => {
-            elm.addEventListener("click", (event) => {
-                var myModal = new bootstrap.Modal(document.getElementById("modal-" + event.currentTarget.dataset.modal), {});
-                myModal.show()
-            })
-        });
-    </script>
     <script src="./scripts/revealingText.js"></script>
-
+    <script src="./scripts/makePerson.js"></script>
+    <script>
+        let makePerson = document.querySelector(".persons")
+        createPerson(makePerson, "Chloe Cho", "images/PFP/Chloe_Cho.webp","", "President")
+        createPerson(makePerson, "Victor Hsu", "images/PFP/Victor_Hsu.jpg","","")
+        createPerson(makePerson, "Aiden Hong", "images/PFP/Aiden_Hong.jpeg")
+        createPerson(makePerson, "Sam Nakon", "images/PFP/Sam_Nakon.jpeg")
+        createPerson(makePerson, "Sanda Rakotobe-Joel", "images/PFP/Sanda_Rakotobe-Joel.jpeg")
+        createPerson(makePerson, "David Kim", "images/PFP/David_Kim.webp")
+        createPerson(makePerson, "Yasmin Hassouni", "images/PFP/Yasmin_Hassouni.jpeg","","Writing")
+    </script>
 </body>
 </html>

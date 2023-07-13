@@ -92,7 +92,8 @@
 }
 
 .person {
-    background-color: #668fd1;
+    /* background-color: #668fd1; */
+    box-shadow: none !important;
     padding-top: 20px !important;
 }
 
@@ -100,6 +101,27 @@
     border-radius: 20px;
 }
 
+.pfp {
+    margin-bottom: 20px !important;
+}
+
 .persons {
     margin-bottom: 0 !important;
+    /* padding: 20px 2% 2% 2%; */
+    margin:  0 50px !important;
+    /* display: grid; */
+    /* grid-template-columns: repeat(4, 1fr); */
+    column-gap: 75px !important;
+    /* row-gap: 40px; */
+    color: white !important;
+}
+
+.ourteam {
+    color:white;
+}
+
+.load-more {
+    height: 75px !important;
+    width: 50% !important;
+    margin-left: 25%;
 }

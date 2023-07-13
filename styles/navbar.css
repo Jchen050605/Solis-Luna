@@ -70,6 +70,28 @@ body {
     height: 80px;
 }
 
+.picture {
+    position: relative;
+}
+
+.picture .box {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translate(0, -20%);
+    min-width: 50vw;
+    color: white;
+    font-weight: normal;
+}
+
+.picture img {
+    width: 99vw;
+    height: 100vh;
+    object-fit: cover;
+    filter: brightness(0.8);
+    z-index: -1;
+}
+
 @media only screen and (max-width: 1300px) { 
     .nav-header {display: none;}
 }

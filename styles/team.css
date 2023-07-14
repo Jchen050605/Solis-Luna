@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
 .persons {
     padding: 20px 2% 2% 2%;
     margin:  0 100px 0 100px;
@@ -40,4 +42,51 @@
     width: 100%;
     aspect-ratio: 1/1;
     margin: 0 auto;
-  }
+}
+
+.profile {
+    display: none;
+    margin-top: 100px;
+    padding: 50px;
+}
+
+.goback {
+    background-color: white;
+    font-size: 1.1rem;
+    border: 1px solid #29395b;
+    color: #29395b;
+    padding: 10px 15px;
+    grid-column-start: 1;
+    width: 200px;
+    grid-column-end: 3;
+}
+
+.darkenedNavbar {
+    color: #4a4a4a !important;
+}
+
+.darkenedNavbar:hover, .darkenedNavbar:hover {
+    color: black !important;
+}
+
+.individualProfile {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 20px 200px 0 200px;
+    gap: 50px;
+}
+
+.information h1 {
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+.information h5 {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 1.5rem;
+}
+
+.individualProfile img {
+    width: 100%;
+    margin: auto;
+}

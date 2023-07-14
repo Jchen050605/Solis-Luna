@@ -9,7 +9,8 @@ function createEvent(name, date, bio, pathToImage) {
     div.classList.add("reveal")
     div.classList.add("event")
 
-    let image = document.createElement("div")
+    let image = document.createElement("img")
+    image.src = "./images/events/"+pathToImage
     image.classList.add("image")
     div.appendChild(image)
 

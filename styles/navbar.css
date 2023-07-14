@@ -79,9 +79,18 @@ body {
     top: 50%;
     left: 5%;
     transform: translate(0, -20%);
-    min-width: 50vw;
     color: white;
     font-weight: normal;
+    width: 100%;
+}
+
+.box h2 {
+    font-size: 5em;
+    width: 80vw;
+}
+
+.box h1 {
+    width: 50vw;
 }
 
 .picture img {

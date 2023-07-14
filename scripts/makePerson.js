@@ -3,14 +3,21 @@ let profilePage = document.querySelector(".profile")
 let goback = document.querySelector(".goback");
 let navbars = document.querySelectorAll(".nav-link")
 let navbarHeader = document.querySelector("#header")
+let profileBioHead = document.querySelector(".information h1")
 let profileBio = document.querySelector(".information h5")
+let profileImage = document.querySelector(".bigProfileImage")
 
 let bios = new Map();
-let profileNames = [];
 
-function setProfilePage(elm) {
+function setProfilePage(name, pathToImage) {
     profilePage.style.display = "block"
     regularPage.style.display = "none"
+
+    let formattedBio = bios.get(name).replace(/\n/g, "<br><br>");
+    profileBio.innerHTML = formattedBio
+    profileBioHead.textContent = name;
+
+    profileImage.src = pathToImage
 
     navbars.forEach((navbar) => {
         navbar.classList.add("darkenedNavbar")
@@ -40,8 +47,6 @@ function createPerson(parentElm, name, pathToImage, bio, role=false) {
     let personDiv = document.createElement("div")
     personDiv.classList.add("person")
     personDiv.classList.add("reveal")
-    personDiv.dataset.number = bios.length;
-    profileNames.push(name)
 
     let center = document.createElement("center")
     
@@ -67,5 +72,7 @@ function createPerson(parentElm, name, pathToImage, bio, role=false) {
     }
 
     parentElm.appendChild(personDiv)
-    personDiv.addEventListener("click", () => {setProfilePage(personDiv)})
+    personDiv.addEventListener("click", () => {setProfilePage(name, pathToImage)})
+
+    bios.set(name, bio)
 }

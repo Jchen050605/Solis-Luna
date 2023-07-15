@@ -23,7 +23,9 @@ function setProfilePage(name, pathToImage) {
         navbar.classList.add("darkenedNavbar")
     })
 
+
     navbarHeader.setAttribute("style", "color: #4a4a4a !important;");
+    window.location.hash = "#top"
 }
 
 function setRegularPage() {
@@ -35,6 +37,8 @@ function setRegularPage() {
             navbar.classList.remove("darkenedNavbar")
         }
     })
+
+    window.location.hash = "#team"
 
     navbarHeader.setAttribute("style", "color: white !important;");
 }

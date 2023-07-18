@@ -70,9 +70,7 @@ body {
     height: 80px;
 }
 
-.picture {
-    position: relative;
-}
+
 
 .picture .box {
     position: absolute;
@@ -91,14 +89,6 @@ body {
 
 .box h1 {
     width: 50vw;
-}
-
-.picture img {
-    width: 99vw;
-    height: 100vh;
-    object-fit: cover;
-    filter: brightness(0.8);
-    z-index: -1;
 }
 
 @media only screen and (max-width: 1300px) { 

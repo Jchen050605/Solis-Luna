@@ -1,26 +1,5 @@
 body {
     max-width: 99vw !important;
-    overflow-x:hidden;
-}
-
-.items {
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-}
-
-.items a {
-    font-size: 1.5em;
-    background-color: #fdeba2;
-    text-decoration: none;
-    color:black;
-    display: inline-block;
-    padding: 10px 40px;
-    border-radius: 50px;
-}
-
-.items a:hover {
-    background-color: #cabd8a;
 }
 
 .person {

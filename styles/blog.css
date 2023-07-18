@@ -1,0 +1,48 @@
+.blogs {
+    padding: 100px;
+}
+
+.blogs h1 {
+    text-align: center;
+}
+
+.options  {
+    margin-top: 50px;
+    padding: 0 15vw;
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+}
+
+.options input {
+    width: 100%;
+    font-size: 1.5rem;
+    padding: 10px;
+}
+
+.region {
+    background-color: white;
+    text-decoration: none;
+    color:black;
+    padding: 10px;
+    font-size: 1.5rem;
+    border: 1px solid rgb(88, 88, 88);
+    border-right: none;
+}
+
+.search {
+    
+}
+
+input:focus{
+    outline: none;
+}
+
+.icon {
+    font-weight: bolder;
+    float: right;
+}
+
+.region {
+    cursor: pointer;
+    color: black !important;
+}

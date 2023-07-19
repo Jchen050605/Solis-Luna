@@ -1,0 +1,13 @@
+.mission {
+    padding: 100px;
+    text-align: center;
+}
+
+.mission h1 {
+    font-size: 4rem;
+    margin-bottom: 50px;
+}
+
+.mission h5 {
+    font-size: 2rem;
+}

@@ -6,7 +6,7 @@
     text-align: center;
 }
 
-.options  {
+.options {
     margin-top: 50px;
     padding: 0 15vw;
     display: grid;
@@ -22,18 +22,30 @@
 .region {
     background-color: white;
     text-decoration: none;
-    color:black;
+    color: black;
     padding: 10px;
     font-size: 1.5rem;
     border: 1px solid rgb(88, 88, 88);
     border-right: none;
 }
 
-.search {
-    
+.searchIcons img {
+    height: 2em;
 }
 
-input:focus{
+.searchIcons {
+    background-color: #3f3f3f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchIcons:hover {
+    cursor: pointer;
+    background-color: #303030;
+}
+
+input:focus {
     outline: none;
 }
 
@@ -45,4 +57,24 @@ input:focus{
 .region {
     cursor: pointer;
     color: black !important;
+}
+
+.dropdown-menu li {
+    position: relative;
+}
+
+.dropdown-menu .dropdown-submenu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: -7px;
+}
+
+.dropdown-menu .dropdown-submenu-left {
+    right: 100%;
+    left: auto;
+}
+
+.dropdown-menu>li:hover>.dropdown-submenu {
+    display: block;
 }

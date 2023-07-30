@@ -90,7 +90,26 @@
     <div class="blogs">
         <h1>Search For Articles</h1>
         <div class="options">
-            <a class="region">All<span class="icon">⌵</span></a>
+            <div class="dropdown">
+                <button class="region dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    All
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li>
+                        <a class="dropdown-item" href="#">California &raquo;</a>
+                        <ul class="dropdown-menu dropdown-submenu dropdown-submenu-right">
+                            <li>
+                              <a class="dropdown-item" href="#">Los Angelos</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="dropdown-item" href="./regions/florida.html">Florida</a></li>
+                    <li><a class="dropdown-item" href="./regions/newjersey.html">New Jersey</a></li>
+                    <li><a class="dropdown-item" href="./regions/newyork.html">New York</a></li>
+                    <li><a class="dropdown-item" href="./regions/florida.html">Washington</a></li>
+                </div>
+            </div>
             <input type="text" class="search" placeholder="Search">
             <a class="searchIcons"><img src="./images/search.png" alt=""></a>
         </div>

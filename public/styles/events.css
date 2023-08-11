@@ -22,10 +22,19 @@
 
 .info h2 {
     color: #eaac73;
+    font-size: 2.5rem;
 }
 
 .info h5 {
     font-style: italic;
+}
+
+.info h6 {
+    font-size: 1.25rem;
+}
+
+.ourteam {
+    color: white !important;
 }
 
 .load-more {

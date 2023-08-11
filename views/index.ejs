@@ -68,12 +68,12 @@
                                         <a class="dropdown-item" href="#"><%=region.name%> &raquo;</a>
                                         <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
                                             <% region.regions.forEach((subsection) => { %>
-                                                <li><a class="dropdown-item" href="/region/<%=subsection.replace(/ /g, "-")%>"><%=subsection%></a></li>
+                                                <li><a class="dropdown-item" href="/region/<%=subsection.id%>"><%=subsection%></a></li>
                                             <% }) %>
                                         </ul>
                                     </li>
                                 <% } else { %>
-                                    <li><a class="dropdown-item" href="/region/<%=region.name.replace(/ /g, "-")%>"><%=region.name%></a></li>  
+                                    <li><a class="dropdown-item" href="/region/<%=region.id%>"><%=region.name%></a></li>  
                                 <% } %>
                             <% }) %>
                         </ul>

@@ -51,31 +51,42 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="./index.html">Home</a>
+                        <a class="nav-link" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link" aria-current="page" href="./mission.html">About Us</a>
+                        <a class="nav-link" aria-current="page" href="/about">About Us</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Teams
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="./fullteam.html">Executive Team</a></li>
-                            <li><a class="dropdown-item" href="./newjersey.html">New Jersey</a></li>
-                            <li><a class="dropdown-item" href="./newyork.html">New York</a></li>
-                            <li><a class="dropdown-item" href="./florida.html">Florida</a></li>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="/executives">Executive Team</a></li>
+                            <% regions.forEach((region) => { %>
+                                <% if (region.expanded) { %>
+                                    <li>
+                                        <a class="dropdown-item" href="#"><%=region.name%> &raquo;</a>
+                                        <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                                            <% region.regions.forEach((subsection) => { %>
+                                                <li><a class="dropdown-item" href="/region/<%=subsection.id%>"><%=subsection%></a></li>
+                                            <% }) %>
+                                        </ul>
+                                    </li>
+                                <% } else { %>
+                                    <li><a class="dropdown-item" href="/region/<%=region.id%>"><%=region.name%></a></li>  
+                                <% } %>
+                            <% }) %>
                         </ul>
                     </li>
                     <li class="nav-item volunteer">
-                        <a class="nav-link" href="./volunteer.html">Volunteer</a>
+                        <a class="nav-link" href="/volunteer">Volunteer</a>
                     </li>
                     <li class="nav-item blog">
-                        <a class="nav-link" href="./blog.html">Blog</a>
+                        <a class="nav-link" href="/blog">Blog</a>
                     </li>
                     <li class="nav-item blog">
-                        <a class="nav-link" href="./support.html">Support Us</a>
+                        <a class="nav-link" href="/support">Support Us</a>
                     </li>
                 </ul>
             </div>

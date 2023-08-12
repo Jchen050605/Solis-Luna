@@ -16,3 +16,9 @@ document.querySelectorAll(".blog-selector > li").forEach((option) => {
         console.log(option.textContent)
     })
 })
+
+document.querySelectorAll('.singleBlog').forEach((blog) => {
+    blog.addEventListener('click', () => {
+        window.location.href = "/blog/a"
+    })
+})

@@ -59,7 +59,7 @@ button.dropdown-toggle {
 }
 
 .regionBlob {
-    padding: 0 100px 100px 100px;
+    padding: 0 100px 100px;
     width: 80%;
     margin-left: 10%;
 }
@@ -68,7 +68,7 @@ button.dropdown-toggle {
     font-size: 1.5rem;
 }
 
-.applicationForm {
+.applicationForm, .rd a {
     text-decoration: none;
     color:black;
     font-size: 1.5em;
@@ -118,7 +118,27 @@ button.dropdown-toggle {
     font-weight: bold;
 }
 
+.regionOptions li {
+    display: block;
+}
+
 .regionOptions li:hover {
     background-color: #dfdfdf;
     cursor: pointer;
+}
+
+.extraSpace {
+    padding: 100px;
+}
+
+.rd {
+    margin-top: 50px;
+    width: 60%;
+    margin-left: 20%;
+    text-align: center;
+    display: none;
+}
+
+.rd a {
+    background-color: #ad00b3 !important;
 }

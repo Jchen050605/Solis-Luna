@@ -94,6 +94,10 @@ app.get("/about", async (req, res) => {
 });
 
 app.get("/blog", async (req, res) => {
+    res.render('blogs', { regions: await formatRegions() })
+});
+
+app.get("/blog/:id", async (req, res) => {
     res.render('blog', { regions: await formatRegions() })
 });
 

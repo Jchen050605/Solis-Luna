@@ -30,16 +30,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400&family=Lato:wght@400&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="./styles/banner.css">
-    <link rel="stylesheet" href="./styles/sections.css">
-    <link rel="stylesheet" href="./styles/volunteer.css">
+    <link rel="stylesheet" href="/styles/banner.css">
+    <link rel="stylesheet" href="/styles/sections.css">
+    <link rel="stylesheet" href="/styles/volunteer.css">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid nav">
-            <a class="navbar-brand" href="./index.html">
-                <img src="./images/solis.png" alt="" height="100">
+            <a class="navbar-brand" href="/">
+                <img src="/images/solis.png" alt="" height="100">
             </a>
             <a class="nav-link nav-header" style="color:#01033e">Solis and Luna Arts</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -50,10 +50,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="./index.html">Home</a>
+                        <a class="nav-link" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link" aria-current="page" href="./mission.html">About Us</a>
+                        <a class="nav-link" aria-current="page" href="/about">About Us</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -61,76 +61,102 @@
                             Teams
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="./fullteam.html">Executive Team</a></li>
-                            <li>
-                                <a class="dropdown-item" href="#">California &raquo;</a>
-                                <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                            <li><a class="dropdown-item" href="/executives">Executive Team</a></li>
+                            <% regions.forEach((region) => { %>
+                                <% if (region.expanded) { %>
                                     <li>
-                                      <a class="dropdown-item" href="#">Los Angelos</a>
+                                        <a class="dropdown-item" href="#"><%=region.name%> &raquo;</a>
+                                        <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                                            <% region.regions.forEach((subsection) => { %>
+                                                <li><a class="dropdown-item" href="/region/<%=subsection.id%>"><%=subsection%></a></li>
+                                            <% }) %>
+                                        </ul>
                                     </li>
-                                </ul>
-                            </li>
-                            <li><a class="dropdown-item" href="./regions/florida.html">Florida</a></li>
-                            <li><a class="dropdown-item" href="./regions/newjersey.html">New Jersey</a></li>
-                            <li><a class="dropdown-item" href="./regions/newyork.html">New York</a></li>
-                            <li><a class="dropdown-item" href="./regions/florida.html">Washington</a></li>
+                                <% } else { %>
+                                    <li><a class="dropdown-item" href="/region/<%=region.id%>"><%=region.name%></a></li>  
+                                <% } %>
+                            <% }) %>
                         </ul>
                     </li>
                     <li class="nav-item volunteer">
-                        <a class="nav-link" href="./volunteer.html">Volunteer</a>
+                        <a class="nav-link" href="/volunteer">Volunteer</a>
                     </li>
                     <li class="nav-item blog">
-                        <a class="nav-link" href="./blog.html">Blog</a>
+                        <a class="nav-link" href="/blog">Blog</a>
                     </li>
                     <li class="nav-item blog">
-                        <a class="nav-link" href="./support.html">Support Us</a>
+                        <a class="nav-link" href="/contact">Contact Us</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
     <div class="picture">
-        <img class='w-100 img-wide max-h-px' src="./images//Banners/performing.jpg" alt="" />
+        <img class='w-100 img-wide max-h-px' src="/images//Banners/performing.jpg" alt="" />
         <div class="box">
             <h2>Volunteering</h2>
-            <h1 class="text-white image-text">Get connected with your local region</h1>
+            <h1 class="text-white image-text">Get connected in your community.</h1>
         </div>
     </div>
     <div class="spacer"></div>
-    <div class="community">
-        <h1 class="header">Find your Region</h1>
+    <div class="information section2 text-center">
+        <div class="informationText">
+            <h1>Information</h1>
+            <h3>Members of the Solis And Luna Arts are highly motivated people in their communities! They donate their time in order to host events which cultivate grown in mental health.</h3>
+        </div>
     </div>
-    <footer class="bg-dark text-white">
-        <div class="container">
-            <div class="footer-grid ">
-                <div class="head">
-                    <h1>About Us</h1>
-                    <h5><a href="./mission.html">Our Mission</a></h5>
-                    <h5><a href="./fullteam.html">Our Team</a></h5>
-                    <h5><a href="./contact.html">Contact Us</a></h5>
-                </div>
-                <div class="head">
-                    <h1>Get Involved</h1>
-                    <h5><a href="./donate.html">Donate</a></h5>
-                    <h5><a href="./volunteer.html">Volunteer</a></h5>
-                    <h5><a href="./member.html">Join a program</a></h5>
-                </div>
-                <div class="head">
-                    <h1 class="text-center">Want to get notified about updates</h1>
-                    <h5 class="text-center">Subscibe to our email list</h5>
-                    <form action="">
-                        <input class="emailfooter" type="email" placeholder="myname@example.com" required>
-                        <input type="submit" value="Join Now" class="buttonfooter">
-                    </form>
-                </div>
+    <div class="qualifications section3 text-center">
+        <div class="qualificationText">
+            <h1>Requirements</h1>
+            <div class="requirements">
+                <h2>Region Director</h2>
+                <h4>- ladla</h4>
+                <h4>- awdawdasd</h4>
+                <h4>- laawdawddla</h4>
+                <h4>- laadla</h4>
+            </div>
+            <div class="requirements">
+                <h2>Writing Department</h2>
+                <h4>- ladla</h4>
+                <h4>- laawdawddla</h4>
+                <h4>- laadla</h4>
+            </div>
+            <div class="requirements">
+                <h2>Music Department</h2>
+                <h4>- ladla</h4>
+                <h4>- ladla</h4>
+                <h4>- ladla</h4>
+                <h4>- ladla</h4>
+                <h4>- awdawdasd</h4>
             </div>
         </div>
-    </footer>
-
+    </div>
+    <div class="volunteerInformation">
+        <div class="volunteerText text-center">
+            <h1>Volunteer</h1>
+            <div class="inputThings">
+                <input type="" placeholder="Select a region!">
+                <% regionsList = ["California - Los Angelos", "New Jersey", "New York", "Washington", "California - Other Place"] %>
+                <% regionsList.sort() %>
+                <ul class="regionOptions">
+                    <% regionsList.forEach((rList) => { %>
+                        <li data-director="Person PersonLastName" data-email="region@solisandlunaarts.com"><%= rList %></li>
+                    <% }) %>
+                </ul>
+            </div>
+        </div>
+        <div class="regionBlob text-center">
+            <h1>New Jersey</h1>
+            <h6><span class="title">Region Director: </span><span class="director">Person PersonLastName</span></h6>
+            <h6><span class="title">Contact Email: </span><span class="email">region@solisandlunaarts.com</span></h6>
+            <a href="" class="applicationForm">Apply Now</a>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
-    <script src="./scripts/revealingText.js"></script>
+    <script src="/scripts/revealingText.js"></script>
+    <script src="/scripts/volunteer.js"></script>
 </body>
 
 </html>

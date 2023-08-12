@@ -15,6 +15,20 @@ body {
     margin-bottom: 20px !important;
 }
 
+.items a {
+    display: block;
+    margin-top: 25px;
+    width: 30%;
+}
+
+.book {
+    background-color: #eec366 !important;
+}
+
+.book:hover {
+    background-color: #b6903f !important;
+}
+
 .persons {
     margin-bottom: 0 !important;
     margin:  0 50px !important;

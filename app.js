@@ -93,6 +93,14 @@ app.get("/about", async (req, res) => {
     res.render('mission', { regions: await formatRegions() })
 });
 
+app.get("/blog", async (req, res) => {
+    res.render('blog', { regions: await formatRegions() })
+});
+
+app.get("/volunteer", async (req, res) => {
+    res.render('volunteer', { regions: await formatRegions() })
+});
+
 app.get("/region/:region", async (req, res) => {
     let region = req.params.region
 

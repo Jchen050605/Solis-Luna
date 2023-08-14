@@ -169,6 +169,14 @@ app.get("/admin/users", async (req, res) => {
     res.render('admin/usersPanel')
 });
 
+app.get("/admin/users/add", async (req, res) => {
+    res.render('admin/addUser')
+});
+
+app.get("/admin/users/edit", async (req, res) => {
+    res.render('admin/usersPanel')
+});
+
 app.listen(port, () => {
     console.log(`App server listening on ${port}. (Go to http://localhost:${port})`);
 });

@@ -1,0 +1,116 @@
+body {
+    padding-top: 12vh;
+}
+
+.info {
+    background-color: rgb(78, 78, 78);
+    color:white;
+    text-align: center;
+    padding: 20px 100px 0 100px;
+}
+
+.info h1 {
+    margin-bottom: 50px;
+}
+
+.panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 88vh;
+}
+
+input, textarea, .dropDownInput, .fileImage, .submit {
+    outline: none;
+    width: 100%;
+    font-size: 1.25rem;
+    padding: 10px;
+    border: none;
+    padding-left: 20px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    background-color: white;
+    color:black;
+}
+
+.names {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+}
+
+.dropDownInputMenu {
+    width: 100%;
+}
+
+.inputfile {
+    display: none;
+}
+
+.permissions {
+    width: 60%;
+    margin-left: 20%;
+}
+
+.label {
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkbox {
+    width: 40px;
+    height: 25px;
+    border-radius: 50px;
+    position: relative;
+    -webkit-transition: all 300ms ease;
+    transition: all 300ms ease;
+}
+
+.knob {
+    position: absolute;
+    height: 17px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background-color: white;
+    transition: left .2s;
+}
+
+.checkbox.off .knob {
+    top:4px;
+    left:3px;
+}
+
+.checkbox.on .knob {
+    top:4px;
+    left:19px;
+}
+
+.checkbox.off {
+    background-color: rgb(39, 39, 39);
+}
+
+.checkbox.on {
+    background-color: rgb(122, 208, 107);
+}
+
+.checkbox:hover {
+    cursor: pointer;
+}
+
+.submit {
+    margin-top: 10px;
+    display: block;
+    text-decoration: none;
+    background-color: #a142a5;
+    width: 30%;
+    margin-left: 35%;
+    text-align: center;
+    color:white !important;
+    transition: all .2s;
+}
+
+.submit:hover {
+    cursor: pointer;
+    background-color: #6f2971;
+}

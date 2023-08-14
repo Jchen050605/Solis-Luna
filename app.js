@@ -1,13 +1,23 @@
 const express = require("express");
+const session = require('express-session');
+require('dotenv').config()
 const logger = require("morgan");
 const db = require('./firebase');
+const admin = require('firebase-admin');
 const app = express();
 const port = 3000;
+const subdomainRouter = express.Router();
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 
 app.use(express.static(__dirname + '/public'));
+
+app.use(session({
+    secret: process.env.secret,
+    resave: false,
+    saveUninitialized: true
+}));
 
 async function getRegionsId() {
     let regionsDoc = db.collection("regions").doc("regions")
@@ -32,7 +42,7 @@ async function formatRegions() {
         let documents = await db.collection("regions").doc("regions").collection(region).get()
         let documentNames = documents.docs.map(document => getFormattedId(document.id));
         if (documentNames.length == 1) {
-            formattedNavBar.push({ name: getFormattedId(region), expanded: false, id: region})
+            formattedNavBar.push({ name: getFormattedId(region), expanded: false, id: region })
         }
         else {
             formattedNavBar.push({ name: getFormattedId(region), expanded: true, regions: documentNames, id: region })
@@ -60,11 +70,11 @@ async function formatEvents(region) {
     eventIds.docs.forEach((event) => {
         let data = event.data()
         let date = new Date(data.date._seconds * 1000)
-        let eventDate = date.toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'});
+        let eventDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
         let suffix = getDaySuffix(date.getDate());
 
         eventDate.replace(/\d{1,2}$/, date.getDate() + suffix);
-        
+
         events.push({ name: data.name, date: eventDate, description: data.description })
     })
 
@@ -78,12 +88,38 @@ async function formatPersons(region) {
 
     personIds.docs.forEach((person) => {
         let data = person.data()
-        
+
         persons.push({ name: data.name, bio: data.bio, role: data.role })
     })
 
     return persons
 }
+
+function firebaseAuthMiddleware(req, res, next) {
+    // Assuming the Firebase ID token is stored in the session
+    const idToken = req.session.authToken;
+
+    if (!idToken) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    admin.auth()
+        .verifyIdToken(idToken)
+        .then(decodedToken => {
+            // Store decodedToken.user in session or request context, if needed
+            req.user = decodedToken.user;
+            next();
+        })
+        .catch(error => {
+            return res.status(401).json({ message: 'Unauthorized' });
+        });
+}
+
+app.get('*', function(req, res, next){ 
+  if(req.headers.host.split('.')[0] == 'admin')
+    req.url = '/admin' + req.url;
+  next(); 
+});
 
 app.get("/", async (req, res) => {
     res.render('index', { regions: await formatRegions() })
@@ -121,9 +157,17 @@ app.get("/region/:region", async (req, res) => {
         let regionDB = await db.collection("regions").doc("regions").collection(region).get()
         let documentID = regionDB.docs.map(document => document.id)[0];
         regionDB = await db.collection("regions").doc("regions").collection(region).doc(documentID)
-        res.render('region', { regions: await formatRegions(), events: await formatEvents(regionDB), persons: await formatPersons(regionDB), name:getFormattedId(region) })
+        res.render('region', { regions: await formatRegions(), events: await formatEvents(regionDB), persons: await formatPersons(regionDB), name: getFormattedId(region) })
     }
 })
+
+app.get("/admin/", async (req, res) => {
+    res.render('admin/index')
+});
+
+app.get("/admin/users", async (req, res) => {
+    res.render('admin/usersPanel')
+});
 
 app.listen(port, () => {
     console.log(`App server listening on ${port}. (Go to http://localhost:${port})`);

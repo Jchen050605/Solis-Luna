@@ -1,0 +1,34 @@
+body {
+    overflow-y: hidden;
+}
+
+.options {
+    margin-top:10vh;
+    height: 90vh;
+    width: 99vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 50px 100px;
+    column-gap: 50px;
+    row-gap: 50px;
+}
+
+.options > a {
+    background-color: #424242;
+    box-shadow: 21px 21px 21px 6px rgb(25, 25, 25);
+    transition: all .2s;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    justify-content: center;
+}
+
+.options > a:hover {
+    cursor: pointer;
+    background-color: #595959;
+}
+
+.options > a > h1 {
+    font-size: 5rem;
+    color: rgb(192, 239, 234);
+}

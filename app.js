@@ -1,17 +1,19 @@
 const express = require("express");
 const session = require('express-session');
 require('dotenv').config()
-const logger = require("morgan");
+
+
 const db = require('./firebase');
 const admin = require('firebase-admin');
 const app = express();
 const port = 3000;
-const subdomainRouter = express.Router();
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 
 app.use(express.static(__dirname + '/public'));
+app.use( express.urlencoded({ extended: false }) );
+app.use( express.json() );
 
 app.use(session({
     secret: process.env.secret,
@@ -115,10 +117,16 @@ function firebaseAuthMiddleware(req, res, next) {
         });
 }
 
-app.get('*', function(req, res, next){ 
-  if(req.headers.host.split('.')[0] == 'admin')
-    req.url = '/admin' + req.url;
-  next(); 
+app.get('*', function (req, res, next) {
+    if (req.headers.host.split('.')[0] == 'admin')
+        req.url = '/admin' + req.url;
+    next();
+});
+
+app.post('*', function (req, res, next) {
+    if (req.headers.host.split('.')[0] == 'admin')
+        req.url = '/admin' + req.url;
+    next();
 });
 
 app.get("/", async (req, res) => {
@@ -171,6 +179,14 @@ app.get("/admin/users", async (req, res) => {
 
 app.get("/admin/users/add", async (req, res) => {
     res.render('admin/addUser')
+});
+
+app.post("/admin/users/add", async (req, res) => {
+    const requestData = req.body;
+    console.log('Received data:', requestData);
+    
+    const responseData = { message: 'Data received successfully' };
+    res.json(responseData);
 });
 
 app.get("/admin/users/edit", async (req, res) => {

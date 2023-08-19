@@ -34,7 +34,7 @@ async function getRegionsId() {
 }
 
 function getFormattedId(id) {
-    return id.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
+    return id.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase()).replace(":",": ");
 }
 
 async function formatRegions() {
@@ -300,7 +300,44 @@ app.post("/admin/users/add", async (req, res) => {
     res.json({uid:userRecord.uid})
 });
 
+app.get("/admin/regions", async (req, res) => {
+    let collections = await db.collection("regions").get()
 
+    let documents = collections.docs.map(doc => doc.id)
+
+    let regions = []
+
+    for (let i = 0; i < documents.length; i++) {
+        let doc = await db.collection("regions").doc(documents[i]).get()
+        let data = doc.data()
+
+        let members = await db.collection("regions").doc(documents[i]).collection("members").get()
+        let memberCount = members.docs.length
+
+        let region = {}
+
+        region["memberCount"] = memberCount
+        region["name"] = getFormattedId(documents[i])
+
+        regions.push(region)
+    }
+
+    res.render('admin/regionPanel', {regions:regions})
+});
+
+app.get("/admin/regions/add", async (req, res) => {
+    res.render('admin/addRegion')
+});
+
+app.post("/admin/regions/add", async (req, res) => {
+    console.log("T")
+
+    let document = db.collection("regions").doc(formatRegionName(req.body.regionName))
+
+    await document.set({})
+    
+    res.json({"status":"successful"})
+});
 
 app.get("/admin/users/delete/:uid", async (req, res) => {
     await admin.auth().deleteUser(req.params.uid)

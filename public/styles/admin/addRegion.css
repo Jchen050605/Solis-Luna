@@ -1,0 +1,73 @@
+body {
+    padding-top: 12vh;
+}
+
+.info {
+    background-color: rgb(78, 78, 78);
+    color:white;
+    text-align: center;
+    padding: 40px 200px 40px 200px;
+}
+
+.info h1 {
+    margin-bottom: 50px;
+}
+
+.panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 88vh;
+}
+
+input, textarea, .dropDownInput, .fileImage, .submit {
+    outline: none;
+    width: 100%;
+    font-size: 1.25rem;
+    padding: 10px;
+    border: none;
+    padding-left: 20px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    background-color: white;
+    color:black;
+}
+
+.submit {
+    margin-top: 10px;
+    display: block;
+    text-decoration: none;
+    background-color: #a142a5;
+    width: 30%;
+    margin-left: 35%;
+    text-align: center;
+    color:white !important;
+    transition: all .2s;
+    font-size: 2rem !important;
+}
+
+.submit:hover {
+    cursor: pointer;
+    background-color: #6f2971;
+}
+
+.info a {
+    margin-top: 50px;
+    text-decoration: none;
+    display: block;
+    color:white;
+    background-color: #6f2971;
+    width: 70%;
+    margin-left: 15%;
+    margin-bottom: 10px;
+    border-radius: 50px;
+    font-size: 2rem;
+    padding: 5px 0;
+    transition: background-color .2s;
+    text-align: center;
+}
+
+.info a:hover {
+    background-color: #822386;
+    color:white;
+} 

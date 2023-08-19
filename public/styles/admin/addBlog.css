@@ -1,0 +1,52 @@
+.panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 50px;
+    margin: 0 100px;
+}
+
+input, textarea, .dropDownInput, .fileImage, .submit {
+    outline: none;
+    width: 100%;
+    font-size: 1.25rem;
+    padding: 10px;
+    border: none;
+    padding-left: 20px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    background-color: white;
+    color:black;
+}
+
+.submit {
+    margin-top: 10px;
+    display: block;
+    text-decoration: none;
+    background-color: #a142a5;
+    width: 30%;
+    margin-left: 35%;
+    text-align: center;
+    color:white !important;
+    transition: all .2s;
+    font-size: 2rem !important;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    margin-top: 50px;
+}
+
+.submit:hover {
+    cursor: pointer;
+    background-color: #6f2971;
+}
+
+.info h1, .text h1 {
+    margin-top:50px;
+    color:white;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+textarea {
+    resize: none;
+    border-radius: 20px !important;
+}

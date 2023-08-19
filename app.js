@@ -236,20 +236,18 @@ app.get("/admin/users/edit/:uid", async (req, res) => {
     if (data.pfpURL) {
         dataJSON["pfpURL"]=await bucket.file("members/"+data.pfpURL).getSignedUrl({
             action: 'read',
-            expires: '03-09-2500', // Set an expiration date if needed
+            expires: '03-09-2500',
         });
     }
     else {
         dataJSON["pfpURL"]=await bucket.file("members/placeholder.png").getSignedUrl({
             action: 'read',
-            expires: '03-09-2500', // Set an expiration date if needed
+            expires: '03-09-2500',
         });
     }
     
     res.render('admin/editUser', {data:dataJSON})
 });
-
-const uuid = require("uuid-v4")
 
 app.post('/admin/users/edit/:uid', async (req, res) => {
     const imageBuffer = Buffer.from(req.body.file, 'base64')
@@ -351,6 +349,107 @@ app.get("/admin/users/delete/:uid", async (req, res) => {
     await db.collection("regions").doc(formatRegionName(region)).collection("members").doc(req.params.uid).delete()
 
     res.redirect('/users')
+});
+
+app.get("/admin/blogs", async (req, res) => {
+    let collection = await db.collection("blogs").get()
+
+    let documents = collection.docs.map(doc => doc.id)
+
+    let blogs = []
+
+    for (let i = 0; i < documents.length; i++) {
+        let blog = {}
+
+        let doc = await db.collection("blogs").doc(documents[i]).get()
+        let data = doc.data()
+
+        blog["title"] = data.title;
+        blog["author"] = data.author
+        blog["blogID"] = documents[i];
+        blog["date"] = getFormattedDate(data.date.toDate())
+
+        blogs.push(blog)
+    }
+
+    res.render('admin/blogPanel', {blogs:blogs})
+});
+
+app.get("/admin/blogs/add", async (req, res) => {
+    res.render('admin/addBlog')
+});
+
+app.post("/admin/blogs/add", async (req, res) => {
+    let doc = db.collection("blogs").doc()
+    
+    await doc.set({
+        title: req.body.title,
+        description: req.body.description,
+        author: req.body.author,
+        content: req.body.content,
+        date: admin.firestore.Timestamp.now()
+    })
+    
+    res.json({"blogID":doc.id})
+});
+
+app.get("/admin/blogs/edit/:blogID", async (req, res) => {
+    let document = await db.collection('blogs').doc(req.params.blogID).get()
+
+    let data = document.data()
+
+    let dataJSON = {
+        title:data.title,
+        author:data.author,
+        description:data.description,
+        content:data.content,
+        blogID:req.params.blogID
+    }
+
+    if (data.picture) {
+        dataJSON["picture"]=await bucket.file("blogs/"+data.picture).getSignedUrl({
+            action: 'read',
+            expires: '03-09-2500',
+        });
+    }
+    else {
+        dataJSON["picture"]=await bucket.file("blogs/placeholder.png").getSignedUrl({
+            action: 'read',
+            expires: '03-09-2500',
+        });
+    }
+    
+    res.render('admin/editBlog', {data:dataJSON})
+});
+
+app.post('/admin/blogs/edit/:blogID', async (req, res) => {
+    const imageBuffer = Buffer.from(req.body.file, 'base64')
+    const imageByteArray = new Uint8Array(imageBuffer);
+    const ending = req.body.name.split(".")[req.body.name.split(".").length-1]
+    const url = req.params.blogID+"."+ending
+
+    let document = db.collection("blogs").doc(req.params.blogID)
+
+    document.update({picture:url})
+
+    const file = bucket.file(`blogs/`+url);
+
+    const options = { resumable: false, metadata: { contentType: "image/"+ending } }
+
+        return file.save(imageByteArray, options).then(a => {
+            res.json({"status":"good"})
+        })
+        .catch(err => {
+            console.log(`Unable to upload image ${err}`)
+        })
+});
+
+app.get("/admin/blogs/delete/:blogID", async (req, res) => {
+    await admin.auth().deleteUser(req.params.blogID)
+
+    await db.collection("blogs").doc(req.params.blogID).delete()
+
+    res.redirect('/blogs')
 });
 
 app.listen(port, () => {

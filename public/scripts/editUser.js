@@ -1,43 +1,27 @@
 let file = document.querySelector(".file")
-let form = document.querySelector(".form")
+let modal = document.querySelector('.backgroundModal')
+let uid = document.querySelector(".uid").textContent
 
 document.querySelector('.modal-submit').addEventListener('click', () => {
     const XHR = new XMLHttpRequest();
 
-    const dataPairs = [];
+    XHR.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            location.reload()
+        }
+    };
 
-    const data = [["x","m"]]
-
-    data.forEach((item) => {
-        dataPairs.push(
-            `${encodeURIComponent(item[0])}=${encodeURIComponent(item[1])}`,
-        );
-    })
-
-    
-    const urlEncodedData = dataPairs.join("&").replace(/%20/g, "+");
-    
-    XHR.addEventListener("load", (event) => {
-        // window.location.href="/users"
-    });
-
-    XHR.addEventListener("error", (event) => {
-        // alert("Oops! Something went wrong.");
-    });
-
-    XHR.open("POST", "/upload");
-
-    XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    XHR.open("POST", "/users/edit/"+uid);
 
     let formData = new FormData()
 
-    formData.append("b","c")
+    XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     const reader = new FileReader();
             
     reader.onload = (event) => {
         const imageData = event.target.result;
-        const base64ImageData = imageData.split(',')[1]; // Remove data:image/<type>;base64,
+        const base64ImageData = imageData.split(',')[1]
         formData.append("file",base64ImageData)
         formData.append("name",file.files[0].name)
 
@@ -45,11 +29,16 @@ document.querySelector('.modal-submit').addEventListener('click', () => {
         XHR.send(encodedData);
     };
 
+    console.log(file.files[0])
+
     if (file.files[0]) {
         reader.readAsDataURL(file.files[0]);
     }
     else {
-        XHR.send({});
+        modal.style.display="none"
     }
+})
 
+document.querySelector(".img").addEventListener('click', () => {
+    modal.style.display="flex"
 })

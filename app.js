@@ -4,19 +4,12 @@ const bodyParser = require('body-parser')
 
 require('dotenv').config()
 
-const storage = multer.diskStorage({
-    destination: 'uploads/', // Folder where files will be saved
-    filename: (req, file, callback) => {
-        callback(null, file.originalname); // Keep original filename
-    }
-});
-
-
 const db = require('./firebase');
 
 const admin = require('firebase-admin');
 const app = express();
 const port = 3000;
+const bucket = admin.storage().bucket();
 
 app.use(bodyParser.urlencoded({ extended: false, limit: '10mb' }));
 app.use(bodyParser.json());
@@ -192,30 +185,57 @@ app.get("/admin/users/add", async (req, res) => {
     res.render('admin/addUser')
 });
 
-app.get("/admin/users/:uid", async (req, res) => {
-    res.render('admin/editUser')
+app.get("/admin/users/edit/:uid", async (req, res) => {
+
+    let document = await db.collection("users").doc(req.params.uid).get()
+
+    let data = document.data()
+
+    let dataJSON = {
+        firstName:data.firstName,
+        lastName:data.lastName,
+        position:data.position,
+        region:data.region,
+        email:data.email,
+        uid:req.params.uid
+    }
+
+    if (data.pfpURL) {
+        dataJSON["pfpURL"]=await bucket.file("members/"+data.pfpURL).getSignedUrl({
+            action: 'read',
+            expires: '03-09-2500', // Set an expiration date if needed
+        });
+    }
+    else {
+        dataJSON["pfpURL"]=await bucket.file("members/placeholder.png").getSignedUrl({
+            action: 'read',
+            expires: '03-09-2500', // Set an expiration date if needed
+        });
+    }
+    
+    res.render('admin/editUser', {data:dataJSON})
 });
 
-const uuid = require('uuid-v4');
+const uuid = require("uuid-v4")
 
-app.post('/admin/upload', async (req, res) => {
-    var bucket = admin.storage().bucket();
+app.post('/admin/users/edit/:uid', async (req, res) => {
+    console.log(req.params.uid)
+    
     const imageBuffer = Buffer.from(req.body.file, 'base64')
     const imageByteArray = new Uint8Array(imageBuffer);
-    const file = bucket.file(`images/profile_photo.png`);
+    const ending = req.body.name.split(".")[req.body.name.split(".").length-1]
+    const url = req.params.uid+"."+ending
 
-    const options = { resumable: false, metadata: { contentType: "image/jpg" } }
+    let document = db.collection("users").doc(req.params.uid)
 
-        //options may not be necessary
-        return file.save(imageByteArray, options)
-        .then(stuff => {
-            return file.getSignedUrl({
-                action: 'read',
-                expires: '03-09-2500'
-              })
-        })
-        .then(urls => {
-            const url = urls[0];
+    document.update({pfpURL:url})
+
+    const file = bucket.file(`members/`+url);
+
+    const options = { resumable: false, metadata: { contentType: "image/"+ending } }
+
+        return file.save(imageByteArray, options).then(a => {
+            res.json({"status":"good"})
         })
         .catch(err => {
             console.log(`Unable to upload image ${err}`)
@@ -235,10 +255,7 @@ app.post("/admin/users/add", async (req, res) => {
         position: req.body.position,
     })
 
-    console.log(userRecord.uid)
-    
-    const responseData = {message: 'Data received successfully' };
-    res.json(responseData)
+    res.json({uid:userRecord.uid})
 });
 
 app.get("/admin/users/edit", async (req, res) => {

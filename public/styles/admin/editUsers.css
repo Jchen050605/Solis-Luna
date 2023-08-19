@@ -157,7 +157,6 @@ input, textarea, .dropDownInput, .fileImage, .submit {
 }
 
 .img {
-    background: url("/images/pfp/placeholder.png");
     height: 100%;
     aspect-ratio: 1/1;
     background-size: contain;
@@ -257,4 +256,27 @@ input.file {
 
 .modal-submit:hover {
     background-color: #822386;
+}
+
+.backgroundModal {
+    display: none;
+}
+
+.modal-submit {
+    font-size: 2rem;
+    text-decoration: none;
+    text-align: center;
+    width: 50%;
+    margin-left: 25%;
+    padding: 10px;
+}
+
+.modal-submit:hover {
+    cursor: pointer;
+    background-color: #792e7b;
+    color:white;
+}
+
+.uid {
+    display: none;
 }

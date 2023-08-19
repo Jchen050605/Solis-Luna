@@ -60,43 +60,38 @@
     <div class="panel">
         <div class="info">
             <div class="image">
-                <div class="img">
-                    <h1>Select Image</h1>
-                </div>
+                <img src="<%= data.pfpURL%>" class="img">
             </div>
 
             <div class="information">
                 <h3>First Name</h3>
-                <h4>Jack</h4>
+                <h4><%=data.firstName%></h4>
             </div>
             <div class="information">
                 <h3>Last Name</h3>
-                <h4>Crowley</h4>
+                <h4><%=data.lastName%></h4>
             </div>
             <div class="information">
                 <h3>Email</h3>
-                <h4>jcrowley.jjc@gmail.com</h4>
+                <h4><%=data.email%></h4>
             </div>
             <div class="information">
                 <h3>Region</h3>
-                <h4>New York</h4>
+                <h4><%=data.region%></h4>
             </div>
             <div class="information">
                 <h3>Position</h3>
-                <h4>Owner</h4>
+                <h4><%=data.position%></h4>
             </div>
-            <a href="">Done</a>
+            <a href="/users">Done</a>
+            <div class="uid"><%= data.uid %></div>
         </div>
     </div>
     <div class="backgroundModal">
         <div class="modals">
             <h1 class="title">Select Image</h1>
-            <img src="/images/pfp/placeholder.png" alt="" class="picture">
-            <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
-                <input type="file" name="image" accept="image/*">
-                <button type="submit">Upload Image</button>
-            </form>
-            <input type="file" name="file" id="" class="file">
+            <img src="<%=data["pfpURL"]%>" alt="" class="picture">
+            <input type="file" name="file" id="" class="file" placeholder="bio">
             <a class="modal-submit">Done</a>
         </div>
     </div>

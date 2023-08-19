@@ -3,6 +3,7 @@ let ln = document.querySelector('.lastName')
 let e = document.querySelector('.email')
 let rb = document.querySelector('.region-button')
 let pb = document.querySelector('.position-button')
+let b = document.querySelector('.bio')
 let f = document.querySelector('.inputfile')
 let l = document.querySelector('.fileImage')
 
@@ -71,7 +72,7 @@ document.querySelector(".submit").addEventListener('click', () => {
     let email = e.value;
     let region = rb.textContent;
     let position = pb.textContent;
-    let file = f.files[0];
+    let bio = b.value;
 
     if (firstName == "") {
         createError("Must select a valid first name")
@@ -99,7 +100,7 @@ document.querySelector(".submit").addEventListener('click', () => {
     const dataPairs = [];
 
     const data = [["firstName",firstName],["lastName",lastName],["email",email],
-    ["region",region],["position",position]]
+    ["region",region],["position",position],["bio",bio]]
 
     data.forEach((item) => {
         dataPairs.push(
@@ -110,7 +111,7 @@ document.querySelector(".submit").addEventListener('click', () => {
     const urlEncodedData = dataPairs.join("&").replace(/%20/g, "+");
     
     XHR.addEventListener("load", (event) => {
-        // window.location.href="/users"
+        // window.location.href="/users/edit/a"
     });
 
     XHR.addEventListener("error", (event) => {
@@ -122,4 +123,11 @@ document.querySelector(".submit").addEventListener('click', () => {
     XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     XHR.send(urlEncodedData);
+
+    XHR.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            window.location.href = "/users/edit/"+JSON.parse(this.responseText)["uid"];
+        }
+    };
+
 })

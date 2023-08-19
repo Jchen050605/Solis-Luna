@@ -1,19 +1,30 @@
 const express = require("express");
 const session = require('express-session');
+const bodyParser = require('body-parser')
+
 require('dotenv').config()
+
+const storage = multer.diskStorage({
+    destination: 'uploads/', // Folder where files will be saved
+    filename: (req, file, callback) => {
+        callback(null, file.originalname); // Keep original filename
+    }
+});
 
 
 const db = require('./firebase');
+
 const admin = require('firebase-admin');
 const app = express();
 const port = 3000;
+
+app.use(bodyParser.urlencoded({ extended: false, limit: '10mb' }));
+app.use(bodyParser.json());
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 
 app.use(express.static(__dirname + '/public'));
-app.use( express.urlencoded({ extended: false }) );
-app.use( express.json() );
 
 app.use(session({
     secret: process.env.secret,
@@ -181,12 +192,53 @@ app.get("/admin/users/add", async (req, res) => {
     res.render('admin/addUser')
 });
 
+app.get("/admin/users/:uid", async (req, res) => {
+    res.render('admin/editUser')
+});
+
+const uuid = require('uuid-v4');
+
+app.post('/admin/upload', async (req, res) => {
+    var bucket = admin.storage().bucket();
+    const imageBuffer = Buffer.from(req.body.file, 'base64')
+    const imageByteArray = new Uint8Array(imageBuffer);
+    const file = bucket.file(`images/profile_photo.png`);
+
+    const options = { resumable: false, metadata: { contentType: "image/jpg" } }
+
+        //options may not be necessary
+        return file.save(imageByteArray, options)
+        .then(stuff => {
+            return file.getSignedUrl({
+                action: 'read',
+                expires: '03-09-2500'
+              })
+        })
+        .then(urls => {
+            const url = urls[0];
+        })
+        .catch(err => {
+            console.log(`Unable to upload image ${err}`)
+        })
+});
+
 app.post("/admin/users/add", async (req, res) => {
     const requestData = req.body;
     console.log('Received data:', requestData);
+    let userRecord = await admin.auth().createUser({"email": req.body.email, "password": "securepassword"})
+
+    db.collection("users").doc(userRecord.uid).set({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        region: req.body.region,
+        position: req.body.position,
+    })
+
+    console.log(userRecord.uid)
     
-    const responseData = { message: 'Data received successfully' };
-    res.json(responseData);
+    const responseData = {message: 'Data received successfully' };
+    res.json(responseData)
 });
 
 app.get("/admin/users/edit", async (req, res) => {

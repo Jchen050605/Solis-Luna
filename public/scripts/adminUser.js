@@ -66,8 +66,6 @@ function createError(message) {
 }
 
 document.querySelector(".submit").addEventListener('click', () => {
-    const currentUrl = window.location.href;
-
     let firstName = fn.value;
     let lastName = ln.value;
     let email = e.value;
@@ -96,25 +94,32 @@ document.querySelector(".submit").addEventListener('click', () => {
         return
     }
 
-    const formData = new FormData();
+    const XHR = new XMLHttpRequest();
 
-    formData.append('firstName', firstName)
-    formData.append('lastName', lastName)
-    formData.append('email', email)
-    formData.append('region', region)
-    formData.append('position', position)
-    formData.append('image', file)
+    const dataPairs = [];
 
-    fetch(currentUrl, {
-        method: 'POST',
-        body: formData
+    const data = [["firstName",firstName],["lastName",lastName],["email",email],
+    ["region",region],["position",position]]
+
+    data.forEach((item) => {
+        dataPairs.push(
+            `${encodeURIComponent(item[0])}=${encodeURIComponent(item[1])}`,
+        );
     })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Response data:', data);
-            // window.location.href="users"
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+
+    const urlEncodedData = dataPairs.join("&").replace(/%20/g, "+");
+    
+    XHR.addEventListener("load", (event) => {
+        // window.location.href="/users"
+    });
+
+    XHR.addEventListener("error", (event) => {
+        // alert("Oops! Something went wrong.");
+    });
+
+    XHR.open("POST", window.location.href);
+
+    XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    XHR.send(urlEncodedData);
 })

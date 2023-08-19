@@ -59,57 +59,52 @@
     </nav>
     <div class="panel">
         <div class="info">
-            <h1>Add User</h1>
-            <h5 class="error">HI</h5>
-            <div class="names">
-                <input type="text" class="firstName" placeholder="First">
-                <input type="text" class="lastName" placeholder="Last">
-            </div>
-            <input type="text" class="email" placeholder="Email">
-            <div class="dropdown">
-                <button class="dropDownInput dropdown-toggle region-button" type="button" id="dropdownMenuButton"
-                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Region
-                </button>
-                <div class="dropdown-menu dropDownInputMenu region-options" aria-labelledby="dropdownMenuButton">
-                    <li class="dropdown-item">
-                        California &raquo;
-                        <ul class="dropdown-menu dropdown-submenu dropdown-submenu-right r-subsection">
-                            <li class="dropdown-item">
-                                Los Angelos
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-item">Florida</li>
-                    <li class="dropdown-item">New Jersey</li>
-                    <li class="dropdown-item">New York</li>
-                    <li class="dropdown-item">Washington</li>
+            <div class="image">
+                <div class="img">
+                    <h1>Select Image</h1>
                 </div>
             </div>
-            <div class="dropdown">
-                <button class="dropDownInput dropdown-toggle position-button" type="button" id="dropdownMenuButton"
-                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Position
-                </button>
-                <div class="dropdown-menu dropDownInputMenu position-options" aria-labelledby="dropdownMenuButton">
-                    <li class="dropdown-item">Blogger</li>
-                    <li class="dropdown-item">Regional Blog Manager</li>
-                    <li class="dropdown-item">Regional Webmaster</li>
-                    <li class="dropdown-item">Regional Director</li>
-                    <li class="dropdown-item">Owner</li>
-                    <li class="dropdown-item">Member</li>
-                </div>
+
+            <div class="information">
+                <h3>First Name</h3>
+                <h4>Jack</h4>
             </div>
-            <input type="file" id="upload" class="inputfile" />
-            <label for="upload" class="fileImage">Choose a file</label>
-            <a class="submit">Submit</a>
+            <div class="information">
+                <h3>Last Name</h3>
+                <h4>Crowley</h4>
+            </div>
+            <div class="information">
+                <h3>Email</h3>
+                <h4>jcrowley.jjc@gmail.com</h4>
+            </div>
+            <div class="information">
+                <h3>Region</h3>
+                <h4>New York</h4>
+            </div>
+            <div class="information">
+                <h3>Position</h3>
+                <h4>Owner</h4>
+            </div>
+            <a href="">Done</a>
+        </div>
+    </div>
+    <div class="backgroundModal">
+        <div class="modals">
+            <h1 class="title">Select Image</h1>
+            <img src="/images/pfp/placeholder.png" alt="" class="picture">
+            <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+                <input type="file" name="image" accept="image/*">
+                <button type="submit">Upload Image</button>
+            </form>
+            <input type="file" name="file" id="" class="file">
+            <a class="modal-submit">Done</a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
     <script src="/scripts/revealingText.js"></script>
-    <script src="/scripts/adminUser.js"></script>
+    <script src="/scripts/editUser.js"></script>
 </body>
 
 </html>

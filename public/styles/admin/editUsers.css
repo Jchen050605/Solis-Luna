@@ -277,7 +277,7 @@ input.file {
     color:white;
 }
 
-.uid {
+.uid, .eventID {
     display: none;
 }
 
@@ -291,9 +291,18 @@ input.file {
     cursor: pointer;
 }
 
-.bioText {
+.bioText, .descriptionText {
     font-size: 1rem !important;
     word-wrap: break-word;
     width: 30vw;
     display: none;
+}
+
+textarea {
+    resize: none;
+    border-radius: 20px;
+}
+
+.submit {
+    margin-top: 10px !important;
 }

@@ -452,6 +452,124 @@ app.get("/admin/blogs/delete/:blogID", async (req, res) => {
     res.redirect('/blogs')
 });
 
+app.get("/admin/events", async (req, res) => {
+    let collection = await db.collection("events").get()
+
+    let documents = collection.docs.map(doc => doc.id)
+
+    let events = []
+
+    for (let i = 0; i < documents.length; i++) {
+        let event = {}
+
+        let doc = await db.collection("events").doc(documents[i]).get()
+        let data = doc.data()
+
+        event["name"] = data.name;
+        event["region"] = data.region
+        event["eventID"] = documents[i]
+        event["date"] = getFormattedDate(data.date.toDate())
+
+        events.push(event)
+    }
+
+    res.render('admin/eventsPanel', {events:events})
+});
+
+app.get("/admin/events/add", async (req, res) => {
+    res.render("admin/addEvent.ejs")
+});
+
+app.post("/admin/events/add", async (req, res) => {
+    let region = req.body.region;
+
+    if (req.body.region.includes(":")) {
+        region = region.split(": ")[0]+":"+region.split(": ")[1]
+    }
+
+    let [month, day, year] = req.body.date.split('/');
+
+    let document = db.collection("events").doc()
+    
+    await document.set({
+        name: req.body.name,
+        description: req.body.description,
+        date: admin.firestore.Timestamp.fromDate(new Date(`${year}-${month}-${day}`)),
+        region: region,
+    })
+
+    await db.collection("regions").doc(formatRegionName(region)).collection("events").doc(document.id).set({
+        name: req.body.name,
+        description: req.body.description,
+        date: admin.firestore.Timestamp.fromDate(new Date(`${year}-${month}-${day}`)),
+    })
+    
+    res.json({eventID:document.id})
+})
+
+app.get("/admin/events/edit/:eventID", async (req, res) => {
+    let document = await db.collection("events").doc(req.params.eventID).get()
+
+    let data = document.data()
+
+    let dataJSON = {
+        name:data.name,
+        description:data.description,
+        region:data.region,
+        date:getFormattedDate(data.date.toDate()),
+        eventID:req.params.eventID
+    }
+
+    if (data.picture) {
+        dataJSON["picture"]=await bucket.file("events/"+data.picture).getSignedUrl({
+            action: 'read',
+            expires: '03-09-2500',
+        });
+    }
+    else {
+        dataJSON["picture"]=await bucket.file("blogs/placeholder.png").getSignedUrl({
+            action: 'read',
+            expires: '03-09-2500',
+        });
+    }
+    
+    res.render('admin/editEvent', {data:dataJSON})
+});
+
+app.post('/admin/events/edit/:eventID', async (req, res) => {
+    const imageBuffer = Buffer.from(req.body.file, 'base64')
+    const imageByteArray = new Uint8Array(imageBuffer);
+    const ending = req.body.name.split(".")[req.body.name.split(".").length-1]
+    const url = req.params.eventID+"."+ending
+
+    let document = db.collection("events").doc(req.params.eventID)
+
+    document.update({picture:url})
+
+    const file = bucket.file(`events/`+url);
+
+    const options = { resumable: false, metadata: { contentType: "image/"+ending } }
+
+        return file.save(imageByteArray, options).then(a => {
+            res.json({"status":"good"})
+        })
+        .catch(err => {
+            console.log(`Unable to upload image ${err}`)
+        })
+});
+
+app.get("/admin/events/delete/:eventID", async (req, res) => {
+    let document = await db.collection("events").doc(req.params.eventID).get()
+    let data = document.data()
+
+    let region = data.region;
+
+    await db.collection("events").doc(req.params.eventID).delete()
+    await db.collection("regions").doc(formatRegionName(region)).collection("events").doc(req.params.eventID).delete()
+
+    res.redirect('/events')
+});
+
 app.listen(port, () => {
     console.log(`App server listening on ${port}. (Go to http://localhost:${port})`);
 });

@@ -27,7 +27,9 @@ let regionTitle = document.querySelector('.region-button')
 document.querySelectorAll(".r-subsection > li").forEach((option) => {
 
     option.addEventListener('click', () => {
-        regionTitle.textContent = option.textContent;
+        let parentRegion = option.parentElement.parentElement.textContent.trim().split(" »")[0]
+        regionTitle.textContent = parentRegion+": "+option.textContent.trim();
+        console.log(regionTitle.textContent)
     })
 })
 

@@ -1,6 +1,8 @@
 let file = document.querySelector(".file")
 let modal = document.querySelector('.backgroundModal')
 let uid = document.querySelector(".uid").textContent
+let revealButton = document.querySelector(".clickToExpand")
+let bioText = document.querySelector('.bioText')
 
 document.querySelector('.modal-submit').addEventListener('click', () => {
     const XHR = new XMLHttpRequest();
@@ -41,4 +43,9 @@ document.querySelector('.modal-submit').addEventListener('click', () => {
 
 document.querySelector(".img").addEventListener('click', () => {
     modal.style.display="flex"
+})
+
+document.querySelector('.clickToExpand').addEventListener('click', () => {
+    revealButton.style.display = "none";
+    bioText.style.display = "block"
 })

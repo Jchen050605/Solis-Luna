@@ -68,6 +68,16 @@ function getDaySuffix(day) {
     }
 }
 
+function getFormattedDate(date) {
+    let eventDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    let suffix = getDaySuffix(date.getDate());
+
+    eventDate.replace(/\d{1,2}$/, date.getDate() + suffix);
+
+    return eventDate
+}
+
+
 async function formatEvents(region) {
     let eventIds = await region.collection('events').get()
 
@@ -76,15 +86,15 @@ async function formatEvents(region) {
     eventIds.docs.forEach((event) => {
         let data = event.data()
         let date = new Date(data.date._seconds * 1000)
-        let eventDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-        let suffix = getDaySuffix(date.getDate());
-
-        eventDate.replace(/\d{1,2}$/, date.getDate() + suffix);
-
-        events.push({ name: data.name, date: eventDate, description: data.description })
+        
+        events.push({ name: data.name, date: getFormattedDate(date), description: data.description })
     })
 
     return events
+}
+
+function formatRegionName(region) {
+    return region.toLowerCase().replace(/ /g, "-");
 }
 
 async function formatPersons(region) {
@@ -178,7 +188,29 @@ app.get("/admin/", async (req, res) => {
 });
 
 app.get("/admin/users", async (req, res) => {
-    res.render('admin/usersPanel')
+    let collection = await db.collection("users").get()
+
+    let documents = collection.docs.map(doc => doc.id)
+
+    let users = []
+
+    for (let i = 0; i < documents.length; i++) {
+        let user = {}
+
+        let doc = await db.collection("users").doc(documents[i]).get()
+        let data = doc.data()
+
+        user["name"] = data.firstName+" "+data.lastName;
+        user["region"] = data.region
+        user["email"] = data.email
+        user["position"] = data.position
+        user["uid"] = documents[i]
+        user["time"] = getFormattedDate(data.created.toDate())
+
+        users.push(user)
+    }
+
+    res.render('admin/usersPanel', {users:users})
 });
 
 app.get("/admin/users/add", async (req, res) => {
@@ -197,6 +229,7 @@ app.get("/admin/users/edit/:uid", async (req, res) => {
         position:data.position,
         region:data.region,
         email:data.email,
+        bio:data.bio,
         uid:req.params.uid
     }
 
@@ -219,8 +252,6 @@ app.get("/admin/users/edit/:uid", async (req, res) => {
 const uuid = require("uuid-v4")
 
 app.post('/admin/users/edit/:uid', async (req, res) => {
-    console.log(req.params.uid)
-    
     const imageBuffer = Buffer.from(req.body.file, 'base64')
     const imageByteArray = new Uint8Array(imageBuffer);
     const ending = req.body.name.split(".")[req.body.name.split(".").length-1]
@@ -243,23 +274,46 @@ app.post('/admin/users/edit/:uid', async (req, res) => {
 });
 
 app.post("/admin/users/add", async (req, res) => {
-    const requestData = req.body;
-    console.log('Received data:', requestData);
     let userRecord = await admin.auth().createUser({"email": req.body.email, "password": "securepassword"})
 
-    db.collection("users").doc(userRecord.uid).set({
+    let region = req.body.region;
+
+    if (req.body.region.includes(":")) {
+        region = region.split(": ")[0]+":"+region.split(": ")[1]
+    }
+
+    await db.collection("users").doc(userRecord.uid).set({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
-        region: req.body.region,
+        region: region,
         position: req.body.position,
+        bio: req.body.bio,
+        created: admin.firestore.Timestamp.now()
     })
 
+    await db.collection("regions").doc(formatRegionName(region)).collection("members").doc(userRecord.uid).set({
+        name: req.body.firstName +" "+req.body.lastName,
+        position: req.body.position,
+    })
+    
     res.json({uid:userRecord.uid})
 });
 
-app.get("/admin/users/edit", async (req, res) => {
-    res.render('admin/usersPanel')
+
+
+app.get("/admin/users/delete/:uid", async (req, res) => {
+    await admin.auth().deleteUser(req.params.uid)
+
+    let document = await db.collection("users").doc(req.params.uid).get()
+    let data = document.data()
+
+    let region = data.region;
+
+    await db.collection("users").doc(req.params.uid).delete()
+    await db.collection("regions").doc(formatRegionName(region)).collection("members").doc(req.params.uid).delete()
+
+    res.redirect('/users')
 });
 
 app.listen(port, () => {

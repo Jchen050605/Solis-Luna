@@ -280,3 +280,20 @@ input.file {
 .uid {
     display: none;
 }
+
+.clickToExpand {
+    font-size: 2rem !important;
+    transition: all .2s;
+}
+
+.clickToExpand:hover {
+    color:#adadad;
+    cursor: pointer;
+}
+
+.bioText {
+    font-size: 1rem !important;
+    word-wrap: break-word;
+    width: 30vw;
+    display: none;
+}

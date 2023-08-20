@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Solis, Luna, Arts, Solis and Luna Art">
+    <meta name="description" content="a non-profit charity for helping students express themselves">
+    <title>Solis and Luna Arts</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&family=Roboto+Mono:wght@700&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Kanit:wght@500&family=Roboto+Mono:wght@700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit&family=Roboto+Mono:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/Favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/Favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/Favicon/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/styles/navbar.css">
+    <link rel="stylesheet" href="/styles/revealingText.css">
+    <link rel="stylesheet" href="/styles/footer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400&family=Lato:wght@400&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/styles/banner.css">
+    <link rel="stylesheet" href="/styles/admin/admin.css">
+    <link rel="stylesheet" href="/styles/login.css">
+    <link rel="stylesheet" href="/styles/sections.css">
+</head>
+
+<body>
+    <div class="parent">
+        <div class="login">
+            <h1 class="title">Login</h1>
+            <input type="text" placeholder="Email" class="email">
+            <input type="text" placeholder="Password" class="password">
+            <a class="next">Next</a>
+            <a class="forgot">Forgot password/First Time Login</a>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.2.0/firebase-app.js'
+
+        import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.2.0/firebase-analytics.js'
+
+        import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js'
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.2.0/firebase-firestore.js'
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyB4a2FAbr-4kppyum9jftjC-BO6zPqTe_g",
+            authDomain: "solis-and-luna-arts.firebaseapp.com",
+            projectId: "solis-and-luna-arts",
+            storageBucket: "solis-and-luna-arts.appspot.com",
+            messagingSenderId: "598578294836",
+            appId: "1:598578294836:web:3c7542c7e35d75d3479a61",
+            measurementId: "G-6ESZMF6ZHF"
+        };
+
+        const app = initializeApp(firebaseConfig);
+
+        let email = document.querySelector('.email')
+        let password = document.querySelector('.password')
+        let next = document.querySelector('.next')
+        let login = document.querySelector(".login")
+        let forgot = document.querySelector(".forgot")
+        let title = document.querySelector(".title")
+
+        let stage = 0;
+
+        let change = true;
+
+        forgot.addEventListener('click', () => {
+            login.classList.add("switchFrame")
+            setTimeout(() => {
+                password.style.display = "none"
+                next.textContent = "Send"
+                forgot.style.display = "none"
+                title.textContent = "Password Reset Email"
+                login.classList.remove("switchFrame")
+            }, 1250)
+        })
+
+        next.addEventListener('click', () => {
+            let e = email.value;
+            let p = password.value;
+
+            if (title.textContent == "Password Reset Email") {
+                let data = {
+                    type: "reset",
+                    email: e,
+                };
+
+                let options = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                };
+
+                fetch('/login', options)
+                    .then(response => response.json())
+                    .then(data => {
+                        window.location.href = data["link"]
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+            else {
+                signInWithEmailAndPassword(getAuth(), e, p)
+                    .then(async (userCredential) => {
+                        const user = userCredential.user;
+                        let data = {
+                            type: "uid",
+                            authToken: await user.getIdToken(),
+                        };
+
+                        let options = {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        };
+
+                        fetch('/login', options)
+                            .then(response => response.json())
+                            .then(data => {
+                                window.location.href = "/"
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                            });
+                    })
+                    .catch((error) => {
+                        console.error("Error signing in:", error);
+                    });
+            }
+        })
+    </script>
+</body>
+
+</html>

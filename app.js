@@ -25,6 +25,8 @@ app.use(session({
     saveUninitialized: true
 }));
 
+// await admin.auth().setPersistence(admin.auth.Auth.Persistence.SESSION)
+
 async function getRegionsId() {
     let regionsDoc = db.collection("regions").doc("regions")
 
@@ -111,26 +113,42 @@ async function formatPersons(region) {
     return persons
 }
 
+async function checkIfValidEmail(email) {
+    let collection = await db.collection("users").get()   
+
+    let documents = collection.docs.map(doc => doc.id)
+
+    for (let i = 0; i < documents.length; i++) {
+        let doc = await db.collection("users").doc(documents[i]).get()
+        let data = doc.data()
+
+        if (data.email == email) return true;
+    }
+
+    return false;
+}
+
 function firebaseAuthMiddleware(req, res, next) {
-    // Assuming the Firebase ID token is stored in the session
     const idToken = req.session.authToken;
 
-    if (!idToken) {
-        return res.status(401).json({ message: 'Unauthorized' });
+    if (idToken == undefined) {
+        res.redirect('/login')
+        return;
     }
 
     admin.auth()
         .verifyIdToken(idToken)
         .then(decodedToken => {
-            // Store decodedToken.user in session or request context, if needed
+            console.log(decodedToken)
             req.user = decodedToken.user;
             next();
         })
         .catch(error => {
-            return res.status(401).json({ message: 'Unauthorized' });
+            console.log(error)
+            res.redirect('/login')
+            return;
         });
 }
-
 app.get('*', function (req, res, next) {
     if (req.headers.host.split('.')[0] == 'admin')
         req.url = '/admin' + req.url;
@@ -183,9 +201,24 @@ app.get("/region/:region", async (req, res) => {
     }
 })
 
-app.get("/admin/", async (req, res) => {
+app.get("/admin/", firebaseAuthMiddleware, async (req, res) => {
     res.render('admin/index')
 });
+
+app.get("/admin/login", async (req, res) => {
+    res.render("login")
+})
+
+app.post("/admin/login", async (req, res) => {
+    if (req.body.type == "reset") {
+        let link = await admin.auth().generatePasswordResetLink(req.body.email)
+        res.json({"link":link})  
+    }
+    else {
+        req.session.authToken = req.body.authToken;
+        res.json({"status":"success"})  
+    }
+})
 
 app.get("/admin/users", async (req, res) => {
     let collection = await db.collection("users").get()

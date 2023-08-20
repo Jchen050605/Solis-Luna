@@ -1,0 +1,92 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #212121;
+    padding: 0 !important;
+}
+
+.parent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.login {
+    width: 50vw;
+    padding-bottom: 100px;
+    background-color: #2b2b2b;
+    box-shadow: 0px 3px 31px 28px rgba(0,0,0,0.1);
+}
+
+.title {
+    text-align: center;
+    color:white;
+    margin-top:50px;
+    font-size: 4rem;
+}
+
+.login input {
+    width: 70%;
+    margin-left:15%;
+    margin-top:35px;
+    font-size: 2rem;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    border-bottom: 3px solid white;
+    padding-left:10px;
+    color:white;
+    display: block;
+}
+
+.next {
+    background-color: #640f6f;
+    font-size: 2rem;
+    text-decoration: none;
+    color:white !important;
+    display: block;
+    width: 70%;
+    margin-left:15%;
+    text-align: center;
+    margin-top:25px;
+    padding: 10px;
+    transition: all .2s;
+}
+
+.next:hover {
+  cursor: pointer;
+  background-color: #43094a;
+}
+
+input:read-only {
+  /* Your styles for readonly input elements */
+  border: none;
+  padding: auto 4px;
+  background-color: rgba(0, 0, 0, 0.156);
+}
+
+.login > * {
+  transition: 1s all;
+  opacity: 1;
+}
+
+.login.switchFrame > * {
+  opacity: 0;
+}
+
+.forgot {
+  color:lightblue;
+  text-decoration: underline;
+  margin-left:25%;
+  text-align: center;
+  display: block;
+  margin-top: 20px;
+  width: 50%;
+  transition: all .2s;
+}
+
+.forgot:hover {
+  cursor: pointer;
+}

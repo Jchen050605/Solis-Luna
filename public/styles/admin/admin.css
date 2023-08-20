@@ -6,3 +6,7 @@ body {
 input:focus {
     outline: none;
 }
+
+.nav-item {
+    cursor: pointer;
+}

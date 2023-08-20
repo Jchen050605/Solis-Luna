@@ -10,7 +10,7 @@
     margin-top: 50px;
     padding: 0 15vw;
     display: grid;
-    grid-template-columns: 1fr 6fr 1fr;
+    grid-template-columns: 7fr 2fr;
 }
 
 .options input {

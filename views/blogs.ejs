@@ -66,7 +66,7 @@
                                 <% if (region.expanded) { %>
                                     <li>
                                         <a class="dropdown-item" href="#"><%=region.name%> &raquo;</a>
-                                        <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                                        <ul class="dropdown-menu dropdown-submenu dropdown-submenu-right">
                                             <% region.regions.forEach((subsection) => { %>
                                                 <li><a class="dropdown-item" href="/region/<%=subsection.id%>"><%=subsection%></a></li>
                                             <% }) %>
@@ -101,56 +101,20 @@
     <div class="blogs">
         <h1>Search For Articles</h1>
         <div class="options">
-            <div class="dropdown">
-                <button class="region regionDropDownTitle dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    All
-                </button>
-                <div class="dropdown-menu blog-selector" aria-labelledby="dropdownMenuButton">
-                    <li class="dropdown-item">
-                        California &raquo;
-                        <ul class="dropdown-menu dropdown-submenu dropdown-submenu-right blog-subsection">
-                            <li class="dropdown-item">
-                              Los Angelos
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-item">Florida</li>
-                    <li class="dropdown-item">New Jersey</li>
-                    <li class="dropdown-item">New York</li>
-                    <li class="dropdown-item">Washington</li>
-                </div>
-            </div>
-            <input type="text" class="search" placeholder="Search">
+            <input type="text" class="searchInput" placeholder="Search">
             <a class="searchIcons"><img src="./images/search.png" alt=""></a>
         </div>
-        <div class="singleBlog">
-            <img src="/images/Banners/florida.jpg" alt="" class="reveal">
-            <div class="information reveal">
-                <h2>Some Blog Post</h2>
-                <h4>Chloe Cho</h4>
-                <h5>August 19, 2020</h5>
-                <h6>wadnmawn djkawn djkawnj dnawji dnawiu nduiowan uidnawui ndiuaw nduijwna djknawkjl dnawjk dnawjik ndjawk njdk nwajkd nawjkndjiawndiuawnd</h6>
+        <% blogs.forEach(blog => { %>
+            <div class="singleBlog" data-blogid="<%=blog.blogID%>">
+                <img src="<%=blog.picture%>" alt="" class="reveal">
+                <div class="information reveal">
+                    <h2><%=blog.title%></h2>
+                    <h4><%=blog.author%></h4>
+                    <h5><%=blog.date%></h5>
+                    <h6><%=blog.description%></h6>
+                </div>
             </div>
-        </div>
-        <div class="singleBlog">
-            <img src="/images/Banners/florida.jpg" alt="" class="reveal">
-            <div class="information reveal">
-                <h2>Some Blog Post</h2>
-                <h4>Chloe Cho</h4>
-                <h5>August 19, 2020</h5>
-                <h6>wadnmawn djkawn djkawnj dnawji dnawiu nduiowan uidnawui ndiuaw nduijwna djknawkjl dnawjk dnawjik ndjawk njdk nwajkd nawjkndjiawndiuawnd</h6>
-            </div>
-        </div>
-        <div class="singleBlog">
-            <img src="/images/Banners/florida.jpg" alt="" class="reveal">
-            <div class="information reveal">
-                <h2>Some Blog Post</h2>
-                <h4>Chloe Cho</h4>
-                <h5>August 19, 2020</h5>
-                <h6>wadnmawn djkawn djkawnj dnawji dnawiu nduiowan uidnawui ndiuaw nduijwna djknawkjl dnawjk dnawjik ndjawk njdk nwajkd nawjkndjiawndiuawnd</h6>
-            </div>
-        </div>
+        <% }) %>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"

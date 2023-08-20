@@ -26,11 +26,9 @@ app.use(session({
 }));
 
 async function getRegionsId() {
-    let regionsDoc = db.collection("regions").doc("regions")
+    let collection = await db.collection("regions").get()
 
-    let collections = await regionsDoc.listCollections()
-
-    return collections.map(collection => collection.id);
+    return collection.docs.map(doc => doc.id);
 }
 
 function getFormattedId(id) {
@@ -42,18 +40,34 @@ async function formatRegions() {
 
     let formattedNavBar = []
 
-    for (let i = 0; i < regions.length; i++) {
-        let region = regions[i];
+    let expandedRegions = new Map()
 
-        let documents = await db.collection("regions").doc("regions").collection(region).get()
-        let documentNames = documents.docs.map(document => getFormattedId(document.id));
-        if (documentNames.length == 1) {
-            formattedNavBar.push({ name: getFormattedId(region), expanded: false, id: region })
+    for (let i = 0; i < regions.length; i++) {
+
+        let id = regions[i]
+        let region = await db.collection("regions").doc(id).get()
+
+        let data = region.data()
+
+        if (!id.includes(":")) {
+            formattedNavBar.push({ name: getFormattedId(id), expanded: false, id: id })
         }
         else {
-            formattedNavBar.push({ name: getFormattedId(region), expanded: true, regions: documentNames, id: region })
+            let parentRegion = id.split(":")[0]
+            let childRegion = id.split(":")[1]
+
+            if (expandedRegions.has(parentRegion)) {
+                expandedRegions.get(parentRegion).append(getFormattedId(childRegion))
+            }
+            else {
+                expandedRegions.set(parentRegion, [getFormattedId(childRegion)])
+            }
         }
     }
+
+    expandedRegions.forEach((v,k) => {
+        formattedNavBar.push({ name: getFormattedId(k), expanded: true, regions: v, id: k })
+    })
 
     return formattedNavBar
 }
@@ -172,11 +186,73 @@ app.get("/about", async (req, res) => {
 });
 
 app.get("/blog", async (req, res) => {
-    res.render('blogs', { regions: await formatRegions() })
+    let collection = await db.collection("blogs").get()
+
+    let blogs = []
+
+    for (let i = 0; i < collection.docs.length; i++) {
+        let doc = collection.docs[i]
+
+        let blog = doc.data()
+        blog["blogID"] = doc.id;
+        blogs.push(blog)
+
+        blog.date = getFormattedDate(blog.date.toDate())
+
+        if (!blog.picture) blog.picture = "placeholder.png";
+        
+        blog.picture = await bucket.file("blogs/" + blog.picture).getSignedUrl({
+            action: 'read',
+            expires: '03-09-2500',
+        });
+
+    }
+
+    res.render('blogs', { regions: await formatRegions(), blogs:blogs })
+});
+
+app.post("/blog/search", async (req, res) => {
+    let collection = await db.collection("blogs").get()
+
+    let arr = await searchForSubString(collection.docs, req.body.name, "title", "author")
+
+    let matchingBlogs = [];
+    for (let i = 0; i < arr.length; i++) {
+        let doc = arr[i];
+        let blog = doc.data();
+        blog.blogID = doc.id;
+        matchingBlogs.push(blog);
+
+        blog.date = getFormattedDate(blog.date.toDate())
+
+        if (!blog.picture) blog.picture = "placeholder.png";
+        
+        blog.picture = await bucket.file("blogs/" + blog.picture).getSignedUrl({
+            action: 'read',
+            expires: '03-09-2500',
+        });
+    }
+
+    res.json(matchingBlogs);
 });
 
 app.get("/blog/:id", async (req, res) => {
-    res.render('blog', { regions: await formatRegions() })
+    let blogID = req.params.id
+
+    let blog = await db.collection("blogs").doc(blogID).get()
+
+    let data = blog.data()
+
+    data.date = getFormattedDate(data.date.toDate())
+
+    if (!data.picture) data.picture = "placeholder.png";
+        
+    data.picture = await bucket.file("blogs/" + data.picture).getSignedUrl({
+        action: 'read',
+        expires: '03-09-2500',
+    });
+
+    res.render('blog', { regions: await formatRegions(), blog:data })
 });
 
 app.get("/volunteer", async (req, res) => {

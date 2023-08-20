@@ -33,3 +33,23 @@
 body {
     overflow-x:hidden;
 }
+
+@media screen and (max-width: 767px) {
+    body {
+        background-color: black;
+        width: 100vw;
+    }
+    .picture img {
+        height: 50vh;
+    }
+
+    .box h2 {
+        font-size: 40px !important;
+        width: 100%;
+    }
+
+    .box h1 {
+        font-size: 20px !important;
+        width: 80%;
+    }
+}

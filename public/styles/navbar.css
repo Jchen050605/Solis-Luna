@@ -118,4 +118,13 @@ body {
     .nav-header {
         display: none;
     }
+
+    nav {
+        transition: background-color .4s;
+        background-color: rgba(0,0,0,0);
+    }
+
+    .navActive {
+        background-color: rgba(0,0,0,.8);
+    }
 }

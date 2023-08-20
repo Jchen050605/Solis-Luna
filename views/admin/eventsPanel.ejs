@@ -51,7 +51,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/">Return to main site</a>
+                        <a class="nav-link" aria-current="page" href="/">Return to admin panel</a>
                     </li>
                 </ul>
             </div>
@@ -66,10 +66,10 @@
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 All
             </button>
-            <div class="dropdown-menu blog-selector" aria-labelledby="dropdownMenuButton">
+            <div class="dropdown-menu region-options" aria-labelledby="dropdownMenuButton">
                 <li class="dropdown-item">
                     California &raquo;
-                    <ul class="dropdown-menu dropdown-submenu dropdown-submenu-right blog-subsection">
+                    <ul class="dropdown-menu dropdown-submenu dropdown-submenu-right r-subsection">
                         <li class="dropdown-item">
                             Los Angelos
                         </li>
@@ -81,7 +81,7 @@
                 <li class="dropdown-item">Washington</li>
             </div>
         </div>
-        <input type="text" class="search" placeholder="Search">
+        <input type="text" class="searchInput" placeholder="Search">
         <a class="searchIcons"><img src="./images/search.png" alt=""></a>
     </div>
     <div class="users">
@@ -92,7 +92,7 @@
                 <th>Date</th>
             </tr>
             <% for (let i = 0; i < events.length; i++ ) { %>
-                <tr>
+                <tr class="event">
                     <td><%= events[i].name %></td>
                     <td><%= events[i].region %></td>
                     <td><%= events[i].date %></td>

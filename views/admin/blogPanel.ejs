@@ -51,7 +51,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/">Return to main site</a>
+                        <a class="nav-link" aria-current="page" href="/">Return to admin panel</a>
                     </li>
                 </ul>
             </div>
@@ -60,15 +60,19 @@
     <div class="addBlog">
         <a class="addBlogButton" href="/blogs/add">Add Blog!</a>
     </div>
+    <div class="search">
+        <input type="text" class="searchInput" placeholder="Search">
+        <a class="searchIcons"><img src="./images/search.png" alt=""></a>
+    </div>
     <div class="blogs">
         <table>
             <tr>
                 <th>Title</th>
-                <th>Author(s)</th>
+                <th>Author</th>
                 <th>Date Created</th>
             </tr>
             <% for (let i = 0; i < blogs.length; i++) { %>
-                <tr>
+                <tr class="blog">
                     <td><%= blogs[i].title %></td>
                     <td><%= blogs[i].author %></td>
                     <td><%= blogs[i].date %></td>

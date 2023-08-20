@@ -40,9 +40,12 @@
     <div class="parent">
         <div class="login">
             <h1 class="title">Login</h1>
-            <input type="text" placeholder="Email" class="email">
-            <input type="text" placeholder="Password" class="password">
-            <a class="next">Next</a>
+            <h5 class="error">Error</h5>
+            <form onsubmit="">
+                <input type="text" autocomplete="username" placeholder="Email" class="email">
+                <input type="password" autocomplete="current-password" placeholder="Password" class="password">
+                <input type="submit" value="Submit" class="submit">
+            </form>
             <a class="forgot">Forgot password/First Time Login</a>
         </div>
     </div>
@@ -69,55 +72,41 @@
 
         let email = document.querySelector('.email')
         let password = document.querySelector('.password')
-        let next = document.querySelector('.next')
-        let login = document.querySelector(".login")
+        let submit = document.querySelector('.submit')
+        let form = document.querySelector("form")
+        let parent = document.querySelector(".parent")
         let forgot = document.querySelector(".forgot")
         let title = document.querySelector(".title")
+        let err = document.querySelector(".error")
 
         let stage = 0;
 
-        let change = true;
+        let loginScreen = true;
 
         forgot.addEventListener('click', () => {
-            login.classList.add("switchFrame")
+            parent.classList.add("switchFrame")
             setTimeout(() => {
+                // form.onsubmit = passwordReset;
                 password.style.display = "none"
                 next.textContent = "Send"
                 forgot.style.display = "none"
-                title.textContent = "Password Reset Email"
-                login.classList.remove("switchFrame")
+                title.textContent = "Reset Password"
+                parent.classList.remove("switchFrame")
             }, 1250)
         })
 
-        next.addEventListener('click', () => {
+        function handleForm(event) {
+             event.preventDefault() 
+             if (loginScreen) login()
+             else passwordReset()
+        } 
+        form.addEventListener('submit', handleForm);
+
+        function login() {
             let e = email.value;
             let p = password.value;
 
-            if (title.textContent == "Password Reset Email") {
-                let data = {
-                    type: "reset",
-                    email: e,
-                };
-
-                let options = {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                };
-
-                fetch('/login', options)
-                    .then(response => response.json())
-                    .then(data => {
-                        window.location.href = data["link"]
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-            }
-            else {
-                signInWithEmailAndPassword(getAuth(), e, p)
+            signInWithEmailAndPassword(getAuth(), e, p)
                     .then(async (userCredential) => {
                         const user = userCredential.user;
                         let data = {
@@ -143,10 +132,38 @@
                             });
                     })
                     .catch((error) => {
-                        console.error("Error signing in:", error);
+                        err.textContent = error.code.substring(5).replace("-", " ").split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+                        err.style.display = "block"
+                        console.error("Error signing in:", error.code);
                     });
-            }
-        })
+        }
+
+        function passwordReset() {
+            let e = email.value;
+            let p = password.value;
+
+            let data = {
+                type: "reset",
+                email: e,
+            };
+
+            let options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            };
+
+            fetch('/login', options)
+                .then(response => response.json())
+                .then(data => {
+                    window.location.href = data["link"]
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
     </script>
 </body>
 

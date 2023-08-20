@@ -90,3 +90,10 @@ input:read-only {
 .forgot:hover {
   cursor: pointer;
 }
+
+.error {
+  color:rgb(235, 63, 63);
+  text-align: center;
+  font-size: 2rem;
+  display: none;
+}

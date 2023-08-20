@@ -306,3 +306,18 @@ textarea {
 .submit {
     margin-top: 10px !important;
 }
+
+
+.music h3 {
+    margin-top:16px;
+    display: inline;
+    margin-right: 20px;
+}
+
+.music {
+    margin-bottom: 20px;
+}
+
+.checkboxDiv {
+    display: inline-block;
+}

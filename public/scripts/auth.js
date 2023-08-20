@@ -28,8 +28,7 @@ console.log(x)
 
 if (x) {
     x.addEventListener('click', async () => {
-        console.log("TEST")
-        await getAuth().signOut().then(() => {console.log("T")})
-        window.location.href = "/login"
+        await getAuth().signOut()
+        window.location.href = "/signout"
     })
 }

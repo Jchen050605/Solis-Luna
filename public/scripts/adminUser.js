@@ -6,6 +6,9 @@ let pb = document.querySelector('.position-button')
 let b = document.querySelector('.bio')
 let f = document.querySelector('.inputfile')
 let l = document.querySelector('.fileImage')
+let i = document.querySelector('.instruments')
+
+let w = false; 
 
 let error = document.querySelector(".error")
 
@@ -14,10 +17,14 @@ document.querySelectorAll('.checkbox').forEach((checkbox) => {
         if (checkbox.classList.contains('on')) {
             checkbox.classList.add('off')
             checkbox.classList.remove('on')
+            i.style.display = "block";
+            w=true;
         }
         else {
             checkbox.classList.add('on')
             checkbox.classList.remove('off')
+            i.style.display = "none";
+            w=false;
         }
     })
 })
@@ -75,6 +82,7 @@ document.querySelector(".submit").addEventListener('click', () => {
     let region = rb.textContent;
     let position = pb.textContent;
     let bio = b.value;
+    let instruments = i.value;
 
     if (firstName == "") {
         createError("Must select a valid first name")
@@ -102,7 +110,7 @@ document.querySelector(".submit").addEventListener('click', () => {
     const dataPairs = [];
 
     const data = [["firstName",firstName],["lastName",lastName],["email",email],
-    ["region",region],["position",position],["bio",bio]]
+    ["region",region],["position",position],["bio",bio],["writing",w],["instruments",instruments]]
 
     data.forEach((item) => {
         dataPairs.push(

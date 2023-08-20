@@ -51,7 +51,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/">Return to main site</a>
+                        <a class="nav-link" aria-current="page" href="/">Return to admin panel</a>
                     </li>
                 </ul>
             </div>
@@ -66,10 +66,10 @@
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 All
             </button>
-            <div class="dropdown-menu blog-selector" aria-labelledby="dropdownMenuButton">
+            <div class="dropdown-menu region-options" aria-labelledby="dropdownMenuButton">
                 <li class="dropdown-item">
                     California &raquo;
-                    <ul class="dropdown-menu dropdown-submenu dropdown-submenu-right blog-subsection">
+                    <ul class="dropdown-menu dropdown-submenu dropdown-submenu-right r-subsection">
                         <li class="dropdown-item">
                             Los Angelos
                         </li>
@@ -81,7 +81,7 @@
                 <li class="dropdown-item">Washington</li>
             </div>
         </div>
-        <input type="text" class="search" placeholder="Search">
+        <input type="text" class="searchInput" placeholder="Search">
         <a class="searchIcons"><img src="./images/search.png" alt=""></a>
     </div>
     <div class="users">
@@ -93,7 +93,7 @@
                 <th>Date</th>
             </tr>
             <% for (let i = 0; i < users.length; i++ ) { %>
-                <tr>
+                <tr class="user">
                     <td><%= users[i].name %></td>
                     <td><%= users[i].region %></td>
                     <% switch(users[i].position) {
@@ -103,8 +103,8 @@
                         <% case "Blogger": %>
                             <td><span class="blogger">Blogger</span></td>
                             <% break; %>
-                        <% case "Regional Web Master": %>
-                            <td><span class="regionWM">Regional Web Master</span></td>
+                        <% case "Regional Webmaster": %>
+                            <td><span class="regionWM">Regional Webmaster</span></td>
                             <% break; %>
                         <% case "Regional Blog Manager": %>
                             <td><span class="regionBM">Regional Blog Manager</span></td>

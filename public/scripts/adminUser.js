@@ -92,10 +92,6 @@ document.querySelector(".submit").addEventListener('click', () => {
         createError("Must select a valid last name")
         return
     }
-    if (email == "") {
-        createError("Must select a valid email")
-        return
-    }
     if (region == "") {
         createError("Must select a valid region")
         return

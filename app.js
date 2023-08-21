@@ -454,8 +454,16 @@ app.post('/admin/users/edit/:uid', firebaseAuthMiddleware, async (req, res) => {
         })
 });
 
+let uuid = require("uuid-v4")
+
 app.post("/admin/users/add", firebaseAuthMiddleware, async (req, res) => {
-    let userRecord = await admin.auth().createUser({ "email": req.body.email, "password": "securepassword" })
+    let id;
+
+    if (req.body.email) {
+        let userRecord = await admin.auth().createUser({ "email": req.body.email, "password": "securepassword" })
+        id = userRecord.uid;
+    }
+    else id = uuid()
 
     let region = req.body.region;
 
@@ -463,7 +471,7 @@ app.post("/admin/users/add", firebaseAuthMiddleware, async (req, res) => {
         region = region.split(": ")[0] + ":" + region.split(": ")[1]
     }
 
-    await db.collection("users").doc(userRecord.uid).set({
+    await db.collection("users").doc(id).set({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         fullName: req.body.firstName + " " + req.body.lastName,

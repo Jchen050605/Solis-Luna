@@ -11,3 +11,19 @@
 .mission h5 {
     font-size: 2rem;
 }
+
+@media screen and (max-width: 767px) { 
+    .mission {
+        padding: 25px 0;
+    }
+
+    .mission h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .mission h5 {
+        font-size: 1.3rem;
+        padding-bottom: 25px;
+    }
+}

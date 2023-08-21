@@ -142,3 +142,49 @@ button.dropdown-toggle {
 .rd a {
     background-color: #ad00b3 !important;
 }
+
+@media screen and (max-width: 767px) { 
+    .information, .qualifications, .volunteerInformation {
+        padding: 30px 15px !important;
+    }
+
+    .informationText {
+        margin-left: 10%;
+        width: 80%;
+    }
+
+    .qualificationText {
+        display: block;
+    }
+    
+    .requirements {
+        margin-bottom: 50px;
+    }
+
+    .inputThings {
+        width: 80%;
+        margin-left: 10%;
+    }
+
+    .inputThings input {
+        border: 1px solid gray;
+    }
+
+    .regionBlob {
+        padding: 0;
+        margin: 0 !important;
+    }
+
+    .regionBlob h1 {
+        text-align: left;
+    }
+
+
+    .regionBlob h6 {
+        text-align: left;
+    }
+
+    .regionBlob a, .rd a {
+        width: 60%;
+    }
+}

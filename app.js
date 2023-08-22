@@ -132,15 +132,28 @@ function formatRegionName(region) {
 }
 
 async function formatPersons(region) {
-    let personIds = await region.collection('team').get()
+    let personIds = await region.collection('members').get()
 
     let persons = []
 
-    personIds.docs.forEach((person) => {
-        let data = person.data()
+    for (let i = 0; i < personIds.docs.length; i++) {
+        let person = personIds.docs[i].id;
 
-        persons.push({ name: data.name, bio: data.bio, role: data.role })
-    })
+        let document = await db.collection('users').doc(person).get()
+
+        let data = document.data()
+
+        if (!data.picture) data.picture = "placeholder.png"
+
+        data.picture = await bucket.file("members/" + data.picture).getSignedUrl({
+            action: 'read',
+            expires: '03-09-2500',
+        });
+
+        console.log(data.picture)
+
+        persons.push({ name: data.fullName, bio: data.bio, role: data.position, picture:data.picture })
+    }
 
     return persons
 }
@@ -272,9 +285,7 @@ app.get("/region/:region", async (req, res) => {
         res.redirect("/")
     }
     else {
-        let regionDB = await db.collection("regions").doc("regions").collection(region).get()
-        let documentID = regionDB.docs.map(document => document.id)[0];
-        regionDB = await db.collection("regions").doc("regions").collection(region).doc(documentID)
+        let regionDB = await db.collection("regions").doc(region)
         res.render('region', { regions: await formatRegions(), events: await formatEvents(regionDB), persons: await formatPersons(regionDB), name: getFormattedId(region) })
     }
 })
@@ -311,6 +322,8 @@ app.get("/admin/users", async (req, res) => {
     let users = []
 
     for (let i = 0; i < documents.length; i++) {
+        if (users.length > 15) continue;
+
         let user = {}
 
         let doc = await db.collection("users").doc(documents[i]).get()
@@ -484,12 +497,12 @@ app.post("/admin/users/add", firebaseAuthMiddleware, async (req, res) => {
         created: admin.firestore.Timestamp.now()
     })
 
-    await db.collection("regions").doc(formatRegionName(region)).collection("members").doc(userRecord.uid).set({
+    await db.collection("regions").doc(formatRegionName(region)).collection("members").doc(id).set({
         name: req.body.firstName + " " + req.body.lastName,
         position: req.body.position,
     })
 
-    res.json({ uid: userRecord.uid })
+    res.json({ uid: id })
 });
 
 app.get("/admin/regions", firebaseAuthMiddleware, async (req, res) => {
@@ -530,10 +543,13 @@ app.post("/admin/regions/add", firebaseAuthMiddleware, async (req, res) => {
 });
 
 app.get("/admin/users/delete/:uid", firebaseAuthMiddleware, async (req, res) => {
-    await admin.auth().deleteUser(req.params.uid)
-
     let document = await db.collection("users").doc(req.params.uid).get()
     let data = document.data()
+
+    if (data.email) {
+        await admin.auth().deleteUser(req.params.uid)
+    }
+
 
     let region = data.region;
 

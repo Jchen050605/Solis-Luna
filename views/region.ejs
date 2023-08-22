@@ -112,7 +112,7 @@
                 <% persons.forEach((person) => { %>
                     <div class="person reveal" data-description="<%= person.bio %>">
                         <center>
-                            <img src="\images\PFP\Chloe_Cho.webp" alt="" class="pfp">
+                            <img src="<%=person.picture%>" alt="" class="pfp">
                         </center>
 
                         <h5 class="text-center"><%=person.name%></h5>

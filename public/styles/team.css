@@ -4,9 +4,9 @@
     padding: 20px 2% 2% 2%;
     margin:  0 100px 0 100px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    column-gap: 40px;
-    row-gap: 40px;
+    grid-template-columns: repeat(6, 1fr);
+    column-gap: 10px;
+    row-gap: 10px;
 }
 
 .person {

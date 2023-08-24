@@ -10,8 +10,8 @@
 }
 
 .mission h5, .mission h6 {
+    padding-left: 0;
     margin-bottom: 25px;
-    line-height: 2.8rem;
     font-size: 2rem;
 }
 
@@ -24,6 +24,12 @@
 .mission h5::before {
     content: "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"; /* Four non-breaking spaces */
     display: inline-block;
+}
+
+.mission img {
+    float: right;
+    padding: 0 0 50px 50px;
+    width: 40%;
 }
 
 @media screen and (max-width: 767px) { 

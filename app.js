@@ -443,7 +443,7 @@ app.get("/admin/users/edit/:uid", async (req, res) => {
     res.render('admin/editUser', { data: dataJSON })
 });
 
-app.post('/admin/users/edit/:uid', firebaseAuthMiddleware, async (req, res) => {
+app.post('/admin/users/edit/:uid', async (req, res) => {
     const imageBuffer = Buffer.from(req.body.file, 'base64')
     const imageByteArray = new Uint8Array(imageBuffer);
     const ending = req.body.name.split(".")[req.body.name.split(".").length - 1]

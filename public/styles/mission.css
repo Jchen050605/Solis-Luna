@@ -1,15 +1,29 @@
 .mission {
     padding: 100px;
-    text-align: center;
+    text-align: left;
 }
 
 .mission h1 {
     font-size: 4rem;
     margin-bottom: 50px;
+    text-align: center;
 }
 
-.mission h5 {
+.mission h5, .mission h6 {
+    margin-bottom: 25px;
+    line-height: 2.8rem;
     font-size: 2rem;
+}
+
+.mission h6 {
+    text-align: right;
+    margin-top: 50px;
+    margin-right: 150px;
+}
+
+.mission h5::before {
+    content: "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"; /* Four non-breaking spaces */
+    display: inline-block;
 }
 
 @media screen and (max-width: 767px) { 

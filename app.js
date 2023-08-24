@@ -150,8 +150,6 @@ async function formatPersons(region) {
             expires: '03-09-2500',
         });
 
-        console.log(data.picture)
-
         persons.push({ name: data.fullName, bio: data.bio, role: data.position, picture:data.picture })
     }
 

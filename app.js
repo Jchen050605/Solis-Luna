@@ -65,7 +65,7 @@ async function formatRegions() {
         }
     }
 
-    expandedRegions.forEach((v,k) => {
+    expandedRegions.forEach((v, k) => {
         formattedNavBar.push({ name: getFormattedId(k), expanded: true, regions: v, id: k })
     })
 
@@ -85,7 +85,7 @@ async function searchForSubString(docs, substring, ...fields) {
             if (done) return;
 
             if (data[field].toLowerCase().includes(string)) done = true;
-        }) 
+        })
 
         if (done) good.push(doc)
     })
@@ -134,6 +134,9 @@ function formatRegionName(region) {
 async function formatPersons(region) {
     let personIds = await region.collection('members').get()
 
+    let regionD = []
+    let bloggers = []
+    let members = []
     let persons = []
 
     for (let i = 0; i < personIds.docs.length; i++) {
@@ -143,17 +146,26 @@ async function formatPersons(region) {
 
         let data = document.data()
 
-        if (!data.picture) data.picture = "placeholder.png"
+        if (!data.pfpURL) data.pfpURL = "placeholder.png"
 
-        data.picture = await bucket.file("members/" + data.picture).getSignedUrl({
+        data.picture = await bucket.file("members/" + data.pfpURL).getSignedUrl({
             action: 'read',
             expires: '03-09-2500',
         });
 
-        persons.push({ name: data.fullName, bio: data.bio, role: data.position, picture:data.picture })
+        if (data.position == "Regional Director") {
+            regionD.push({ name: data.fullName, bio: data.bio, role: data.position, picture: data.picture })
+        }
+        else if (data.position == "Blogger") {
+            bloggers.push({ name: data.fullName, bio: data.bio, role: data.position, picture: data.picture })
+        }
+        else if (data.position == "Member") {
+            members.push({ name: data.fullName, bio: data.bio, role: data.position, picture: data.picture })
+        }
+
     }
 
-    return persons
+    return [...regionD, ...bloggers, ...members]
 }
 
 function firebaseAuthMiddleware(req, res, next) {
@@ -211,7 +223,7 @@ app.get("/blog", async (req, res) => {
         blog.date = getFormattedDate(blog.date.toDate())
 
         if (!blog.picture) blog.picture = "placeholder.png";
-        
+
         blog.picture = await bucket.file("blogs/" + blog.picture).getSignedUrl({
             action: 'read',
             expires: '03-09-2500',
@@ -219,7 +231,7 @@ app.get("/blog", async (req, res) => {
 
     }
 
-    res.render('blogs', { regions: await formatRegions(), blogs:blogs })
+    res.render('blogs', { regions: await formatRegions(), blogs: blogs })
 });
 
 app.post("/blog/search", async (req, res) => {
@@ -237,7 +249,7 @@ app.post("/blog/search", async (req, res) => {
         blog.date = getFormattedDate(blog.date.toDate())
 
         if (!blog.picture) blog.picture = "placeholder.png";
-        
+
         blog.picture = await bucket.file("blogs/" + blog.picture).getSignedUrl({
             action: 'read',
             expires: '03-09-2500',
@@ -257,13 +269,13 @@ app.get("/blog/:id", async (req, res) => {
     data.date = getFormattedDate(data.date.toDate())
 
     if (!data.picture) data.picture = "placeholder.png";
-        
+
     data.picture = await bucket.file("blogs/" + data.picture).getSignedUrl({
         action: 'read',
         expires: '03-09-2500',
     });
 
-    res.render('blog', { regions: await formatRegions(), blog:data })
+    res.render('blog', { regions: await formatRegions(), blog: data })
 });
 
 app.get("/volunteer", async (req, res) => {
@@ -350,12 +362,12 @@ app.post("/admin/users/search", async (req, res) => {
     }
     else {
         collection = await db.collection("users")
-        .where("region", "==", region)
-        .get()
+            .where("region", "==", region)
+            .get()
     }
-    
+
     let arr = await searchForSubString(collection.docs, req.body.name, "fullName")
-    
+
     let matchingUsers = [];
     arr.forEach((doc) => {
         let user = doc.data();
@@ -376,12 +388,12 @@ app.post("/admin/events/search", async (req, res) => {
     }
     else {
         collection = await db.collection("events")
-        .where("region", "==", region)
-        .get()
+            .where("region", "==", region)
+            .get()
     }
-    
+
     let arr = await searchForSubString(collection.docs, req.body.name, "name")
-    
+
     let matchingUsers = [];
     arr.forEach((doc) => {
         let user = doc.data();
@@ -412,35 +424,39 @@ app.get("/admin/users/add", firebaseAuthMiddleware, async (req, res) => {
 });
 
 app.get("/admin/users/edit/:uid", async (req, res) => {
+    try {
+        let document = await db.collection("users").doc(req.params.uid).get()
 
-    let document = await db.collection("users").doc(req.params.uid).get()
+        let data = document.data()
 
-    let data = document.data()
+        let dataJSON = {
+            firstName: data.firstName,
+            lastName: data.lastName,
+            position: data.position,
+            region: data.region,
+            email: data.email,
+            bio: data.bio,
+            uid: req.params.uid
+        }
 
-    let dataJSON = {
-        firstName: data.firstName,
-        lastName: data.lastName,
-        position: data.position,
-        region: data.region,
-        email: data.email,
-        bio: data.bio,
-        uid: req.params.uid
+        if (data.pfpURL) {
+            dataJSON["pfpURL"] = await bucket.file("members/" + data.pfpURL).getSignedUrl({
+                action: 'read',
+                expires: '03-09-2500',
+            });
+        }
+        else {
+            dataJSON["pfpURL"] = await bucket.file("members/placeholder.png").getSignedUrl({
+                action: 'read',
+                expires: '03-09-2500',
+            });
+        }
+
+        res.render('admin/editUser', { data: dataJSON })
     }
-
-    if (data.pfpURL) {
-        dataJSON["pfpURL"] = await bucket.file("members/" + data.pfpURL).getSignedUrl({
-            action: 'read',
-            expires: '03-09-2500',
-        });
+    catch {
+        res.redirect("/users")
     }
-    else {
-        dataJSON["pfpURL"] = await bucket.file("members/placeholder.png").getSignedUrl({
-            action: 'read',
-            expires: '03-09-2500',
-        });
-    }
-
-    res.render('admin/editUser', { data: dataJSON })
 });
 
 app.post('/admin/users/edit/:uid', async (req, res) => {

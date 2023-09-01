@@ -1,14 +1,13 @@
+const functions = require('firebase-functions');
 const express = require("express");
 const session = require('express-session');
 const bodyParser = require('body-parser')
 
-require('dotenv').config()
-
-const db = require('./firebase');
+const db = require('./firebaseLogin');
 
 const admin = require('firebase-admin');
 const app = express();
-const port = 3000;
+// const port = 3000;
 const bucket = admin.storage().bucket();
 
 app.use(bodyParser.urlencoded({ extended: false, limit: '10mb' }));
@@ -17,10 +16,10 @@ app.use(bodyParser.json());
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('public'));
 
 app.use(session({
-    secret: process.env.secret,
+    secret: "d2FkdWpiYXd1amtkbwadawdsmlvMm51b25laXdhdWpuZA",
     resave: false,
     saveUninitialized: true
 }));
@@ -792,6 +791,8 @@ app.get("/admin/events/delete/:eventID", firebaseAuthMiddleware, async (req, res
     res.redirect('/events')
 });
 
-app.listen(port, () => {
-    console.log(`App server listening on ${port}. (Go to http://localhost:${port})`);
-});
+// app.listen(port, () => {
+//     console.log(`App server listening on ${port}. (Go to http://localhost:${port})`);
+// });
+
+exports.app = functions.https.onRequest(app);

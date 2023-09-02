@@ -1,4 +1,3 @@
-const functions = require('firebase-functions');
 const express = require("express");
 const session = require('express-session');
 const bodyParser = require('body-parser')
@@ -7,7 +6,7 @@ const db = require('./firebaseLogin');
 
 const admin = require('firebase-admin');
 const app = express();
-// const port = 3000;
+const port = 3000;
 const bucket = admin.storage().bucket();
 
 app.use(bodyParser.urlencoded({ extended: false, limit: '10mb' }));
@@ -207,10 +206,6 @@ app.get("/about", async (req, res) => {
     res.render('mission', { regions: await formatRegions() })
 });
 
-app.get("/executives", async (req, res) => {
-    res.render('executives', { regions: await formatRegions()})
-});
-
 app.get("/blog", async (req, res) => {
     let collection = await db.collection("blogs").get()
 
@@ -311,6 +306,10 @@ app.get("/region/:region", async (req, res) => {
 
 app.get("/admin/", firebaseAuthMiddleware, async (req, res) => {
     res.render('admin/index')
+});
+
+app.get("/executives", async (req, res) => {
+    res.render('executives', { regions: await formatRegions()})
 });
 
 app.get("/admin/login", async (req, res) => {
@@ -801,8 +800,6 @@ app.get("/admin/events/delete/:eventID", firebaseAuthMiddleware, async (req, res
     res.redirect('/events')
 });
 
-// app.listen(port, () => {
-//     console.log(`App server listening on ${port}. (Go to http://localhost:${port})`);
-// });
-
-exports.app = functions.https.onRequest(app);
+app.listen(port, () => {
+    console.log(`App server listening on ${port}. (Go to http://localhost:${port})`);
+});

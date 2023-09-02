@@ -52,3 +52,8 @@
 .nav-link, .nav-header {
     color:black !important;
 }
+
+.persons {
+    grid-template-columns: repeat(4, 1fr) !important;
+    color: black !important;
+}

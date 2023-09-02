@@ -55,7 +55,7 @@ document.querySelector(".submit").addEventListener('click', () => {
 
     XHR.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            window.location.href = "/events/edit/"+JSON.parse(this.responseText)["eventID"];
+            window.location.href = "/admin/events/edit/"+JSON.parse(this.responseText)["eventID"];
         }
     };
 

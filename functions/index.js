@@ -187,17 +187,6 @@ function firebaseAuthMiddleware(req, res, next) {
             return;
         });
 }
-app.get('*', function (req, res, next) {
-    if (req.headers.host.split('.')[0] == 'admin')
-        req.url = '/admin' + req.url;
-    next();
-});
-
-app.post('*', function (req, res, next) {
-    if (req.headers.host.split('.')[0] == 'admin')
-        req.url = '/admin' + req.url;
-    next();
-});
 
 app.get("/", async (req, res) => {
     res.render('index', { regions: await formatRegions() })
@@ -319,7 +308,7 @@ app.get("/admin/login", async (req, res) => {
 
 app.get("/admin/signout", async (req, res) => {
     req.session.authToken = undefined
-    res.redirect("/login")
+    res.redirect("/admin/login")
 })
 
 app.post("/admin/login", async (req, res) => {

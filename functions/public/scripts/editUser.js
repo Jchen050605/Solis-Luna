@@ -13,7 +13,7 @@ document.querySelector('.modal-submit').addEventListener('click', () => {
         }
     };
 
-    XHR.open("POST", "/users/edit/"+uid);
+    XHR.open("POST", "/admin/users/edit/"+uid);
 
     let formData = new FormData()
 

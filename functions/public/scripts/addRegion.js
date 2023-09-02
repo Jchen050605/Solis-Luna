@@ -31,7 +31,7 @@ document.querySelector(".submit").addEventListener('click', () => {
 
     XHR.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            window.location.href = "/regions";
+            window.location.href = "/admin/regions";
         }
     };
 

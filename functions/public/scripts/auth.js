@@ -17,7 +17,7 @@ getAuth().onAuthStateChanged((user) => {
     if (user) {
         console.log('User is signed in:', user.uid);
     } else {
-        window.location.href = "/login"
+        window.location.href = "/admin/login"
     }
 });
 
@@ -29,6 +29,6 @@ console.log(x)
 if (x) {
     x.addEventListener('click', async () => {
         await getAuth().signOut()
-        window.location.href = "/signout"
+        window.location.href = "/admin/signout"
     })
 }

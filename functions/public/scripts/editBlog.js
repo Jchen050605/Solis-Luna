@@ -25,7 +25,7 @@ f.addEventListener('change', function() {
         }
     };
 
-    XHR.open("POST", "/blogs/edit/"+blogID);
+    XHR.open("POST", "/admin/blogs/edit/"+blogID);
 
     let formData = new FormData()
 

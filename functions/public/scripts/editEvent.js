@@ -13,7 +13,7 @@ document.querySelector('.modal-submit').addEventListener('click', () => {
         }
     };
 
-    XHR.open("POST", "/events/edit/"+eventID);
+    XHR.open("POST", "/admin/events/edit/"+eventID);
 
     let formData = new FormData()
 

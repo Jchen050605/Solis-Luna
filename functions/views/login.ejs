@@ -122,7 +122,7 @@
                             body: JSON.stringify(data)
                         };
 
-                        fetch('/login', options)
+                        fetch('/admin/login', options)
                             .then(response => response.json())
                             .then(data => {
                                 window.location.href = "/"

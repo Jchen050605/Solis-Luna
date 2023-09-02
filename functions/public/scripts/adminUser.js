@@ -132,7 +132,7 @@ document.querySelector(".submit").addEventListener('click', () => {
 
     XHR.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            window.location.href = "/users/edit/"+JSON.parse(this.responseText)["uid"];
+            window.location.href = "/admin/users/edit/"+JSON.parse(this.responseText)["uid"];
         }
     };
 

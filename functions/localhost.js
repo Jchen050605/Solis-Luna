@@ -6,7 +6,7 @@ const db = require('./firebaseLogin');
 
 const admin = require('firebase-admin');
 const app = express();
-const port = 3000;
+// const port = 3000;
 const bucket = admin.storage().bucket();
 
 app.use(bodyParser.urlencoded({ extended: false, limit: '10mb' }));
@@ -186,17 +186,6 @@ function firebaseAuthMiddleware(req, res, next) {
             return;
         });
 }
-app.get('*', function (req, res, next) {
-    if (req.headers.host.split('.')[0] == 'admin')
-        req.url = '/admin' + req.url;
-    next();
-});
-
-app.post('*', function (req, res, next) {
-    if (req.headers.host.split('.')[0] == 'admin')
-        req.url = '/admin' + req.url;
-    next();
-});
 
 app.get("/", async (req, res) => {
     res.render('index', { regions: await formatRegions() })
@@ -204,6 +193,10 @@ app.get("/", async (req, res) => {
 
 app.get("/about", async (req, res) => {
     res.render('mission', { regions: await formatRegions() })
+});
+
+app.get("/executives", async (req, res) => {
+    res.render('executives', { regions: await formatRegions()})
 });
 
 app.get("/blog", async (req, res) => {
@@ -308,17 +301,13 @@ app.get("/admin/", firebaseAuthMiddleware, async (req, res) => {
     res.render('admin/index')
 });
 
-app.get("/executives", async (req, res) => {
-    res.render('executives', { regions: await formatRegions()})
-});
-
 app.get("/admin/login", async (req, res) => {
     res.render("login")
 })
 
 app.get("/admin/signout", async (req, res) => {
     req.session.authToken = undefined
-    res.redirect("/login")
+    res.redirect("/admin/login")
 })
 
 app.post("/admin/login", async (req, res) => {

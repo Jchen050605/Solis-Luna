@@ -44,7 +44,7 @@ document.querySelectorAll(".region-options > li").forEach((option) => {
     if (option.children.length == 1) return;
 
     option.addEventListener('click', () => {
-        regionTitle.textContent = option.textContent.split(" »")[0];
+        regionTitle.textContent = option.textContent.split(" »")[0].trim();
     })
 })
 

@@ -125,7 +125,7 @@
                         fetch('/admin/login', options)
                             .then(response => response.json())
                             .then(data => {
-                                window.location.href = "/"
+                                window.location.href = "/admin/"
                             })
                             .catch(error => {
                                 console.error('Error:', error);
@@ -155,7 +155,7 @@
                 body: JSON.stringify(data)
             };
 
-            fetch('/login', options)
+            fetch('/admin/login', options)
                 .then(response => response.json())
                 .then(data => {
                     window.location.href = data["link"]

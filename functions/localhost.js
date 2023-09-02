@@ -6,7 +6,7 @@ const db = require('./firebaseLogin');
 
 const admin = require('firebase-admin');
 const app = express();
-// const port = 3000;
+const port = 3000;
 const bucket = admin.storage().bucket();
 
 app.use(bodyParser.urlencoded({ extended: false, limit: '10mb' }));
@@ -170,7 +170,7 @@ function firebaseAuthMiddleware(req, res, next) {
     const idToken = req.session.authToken;
 
     if (idToken == undefined) {
-        res.redirect('/login')
+        res.redirect('/admin/login')
         return;
     }
 
@@ -182,7 +182,7 @@ function firebaseAuthMiddleware(req, res, next) {
         })
         .catch(error => {
             console.log(error)
-            res.redirect('/login')
+            res.redirect('/admin/login')
             return;
         });
 }
@@ -196,7 +196,7 @@ app.get("/about", async (req, res) => {
 });
 
 app.get("/executives", async (req, res) => {
-    res.render('executives', { regions: await formatRegions()})
+    res.render('executives', { regions: await formatRegions() })
 });
 
 app.get("/blog", async (req, res) => {
@@ -417,7 +417,7 @@ app.post("/admin/blogs/search", async (req, res) => {
 });
 
 app.get("/admin/users/add", firebaseAuthMiddleware, async (req, res) => {
-    res.render('admin/addUser')
+    res.render('admin/addUser', { regions: await formatRegions() })
 });
 
 app.get("/admin/users/edit/:uid", async (req, res) => {
@@ -452,7 +452,7 @@ app.get("/admin/users/edit/:uid", async (req, res) => {
         res.render('admin/editUser', { data: dataJSON })
     }
     catch {
-        res.redirect("/users")
+        res.redirect("/admin/users")
     }
 });
 
@@ -554,20 +554,22 @@ app.post("/admin/regions/add", firebaseAuthMiddleware, async (req, res) => {
 });
 
 app.get("/admin/users/delete/:uid", firebaseAuthMiddleware, async (req, res) => {
-    let document = await db.collection("users").doc(req.params.uid).get()
-    let data = document.data()
+    try {
+        let document = await db.collection("users").doc(req.params.uid).get()
+        let data = document.data()
 
-    if (data.email) {
-        await admin.auth().deleteUser(req.params.uid)
+        if (data.email) {
+            await admin.auth().deleteUser(req.params.uid)
+        }
+
+        let region = data.region;
+
+        await db.collection("users").doc(req.params.uid).delete()
+        await db.collection("regions").doc(formatRegionName(region)).collection("members").doc(req.params.uid).delete()
     }
+    catch {}
+    finally {res.redirect('/admin/users')}
 
-
-    let region = data.region;
-
-    await db.collection("users").doc(req.params.uid).delete()
-    await db.collection("regions").doc(formatRegionName(region)).collection("members").doc(req.params.uid).delete()
-
-    res.redirect('/users')
 });
 
 app.get("/admin/blogs", firebaseAuthMiddleware, async (req, res) => {
@@ -595,7 +597,7 @@ app.get("/admin/blogs", firebaseAuthMiddleware, async (req, res) => {
 });
 
 app.get("/admin/blogs/add", async (req, res) => {
-    res.render('admin/addBlog')
+    res.render('admin/addBlog', { regions: await formatRegions() })
 });
 
 app.post("/admin/blogs/add", firebaseAuthMiddleware, async (req, res) => {

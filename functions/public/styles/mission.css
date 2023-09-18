@@ -1,6 +1,7 @@
 .mission {
     padding: 100px;
     text-align: left;
+    background-color: white;
 }
 
 .mission h1 {
@@ -9,21 +10,37 @@
     text-align: center;
 }
 
-.mission h5, .mission h6 {
+.mission h5,
+.mission h6 {
     padding-left: 0;
     margin-bottom: 25px;
     font-size: 2rem;
+    text-align: center;
 }
 
 .mission h6 {
-    text-align: right;
+    text-align: center;
     margin-top: 50px;
     margin-right: 150px;
 }
 
+.mission table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.mission td {
+    text-align: center;
+    padding: 8px;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
 .mission h5::before {
-    content: "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"; /* Four non-breaking spaces */
+    content: "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0";
+    /* Four non-breaking spaces */
     display: inline-block;
+    text-align: center;
 }
 
 .mission img {
@@ -32,16 +49,14 @@
     width: 40%;
 }
 
-@media screen and (max-width: 767px) { 
+@media screen and (max-width: 767px) {
     .mission {
         padding: 25px 0;
     }
-
     .mission h1 {
         font-size: 2rem;
         margin-bottom: 10px;
     }
-
     .mission h5 {
         font-size: 1.3rem;
         padding-bottom: 25px;
